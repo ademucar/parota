@@ -110,6 +110,29 @@
     input, select, textarea { font-size: inherit; }
   }
 
+  /* Kaydırma çubuğu — kâğıt oluk içinde mürekkep şerit.
+     Modern tarayıcılar standart özellikleri kullanır; bunlar ayarlıyken
+     Chrome ::-webkit-scrollbar kurallarını yok sayar, o yüzden webkit
+     bloğu yalnızca desteklemeyen eski sürümler için yedek. */
+  html, body, * {
+    scrollbar-color: #8b7c5f #ddd0b2;
+  }
+
+  @supports not (scrollbar-color: auto) {
+    ::-webkit-scrollbar { width: 13px; height: 13px; }
+    ::-webkit-scrollbar-track {
+      background: #ddd0b2;
+      border-left: 1px solid #c3ad83;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #8b7c5f;
+      border: 3px solid #ddd0b2;
+      border-radius: 0;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: #6b5e46; }
+    ::-webkit-scrollbar-corner { background: #ddd0b2; }
+  }
+
   ::placeholder { color: #a08f6e; }
   ::selection { background: #2f2a20; color: #e9dfc7; }
 }
