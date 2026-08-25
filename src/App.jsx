@@ -1100,20 +1100,6 @@ const BudgetPanel = ({ gelir, odenen, bekleyen, birikim = 0, ayAdi, onGelirEkle,
           </div>
         </div>
         <div className="flex items-center gap-4 relative z-10">
-          <svg viewBox="0 0 150 90" className="hidden lg:block h-16 shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs><linearGradient id="bnk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#6366f1" /><stop offset="1" stopColor="#4c1d95" /></linearGradient></defs>
-            <rect x="14" y="20" width="82" height="50" rx="9" fill="#312e81" transform="rotate(-9 55 45)" opacity="0.8" />
-            <rect x="26" y="26" width="82" height="50" rx="9" fill="url(#bnk)" />
-            <rect x="34" y="38" width="30" height="5" rx="2.5" fill="#c7d2fe" opacity="0.9" />
-            <rect x="34" y="52" width="46" height="4" rx="2" fill="#c7d2fe" opacity="0.5" />
-            {[0, 1, 2].map(i => (
-              <g key={i} transform={`translate(104 ${64 - i * 9})`}>
-                <ellipse cx="18" cy="8" rx="17" ry="7" fill="#fde68a" />
-                <ellipse cx="18" cy="6" rx="17" ry="7" fill="#facc15" />
-                <text x="18" y="10" textAnchor="middle" fill="#a16207" fontSize="8" fontWeight="700" fontFamily="sans-serif">₺</text>
-              </g>
-            ))}
-          </svg>
           <button onClick={onGelirEkle} className="bg-emerald-600 hover:bg-emerald-700 text-[#f2e9d6] px-5 py-2.5 rounded-xl text-sm font-medium flex items-center justify-center gap-2 shrink-0">
             <Plus size={16} /> Gelir Ekle
           </button>
@@ -1982,7 +1968,7 @@ export default function App() {
   const navItems = [['Ana Sayfa', Home], ['Ödemeler', CreditCard], ['Kategoriler', PieChart], ['Abonelikler', Zap], ['Birikim', PiggyBank], null, ['Ayarlar', Settings]];
 
   return (
-    <div className="flex min-h-[100dvh] bg-[#e9dfc7] text-slate-200 font-sans selection:bg-indigo-500/30">
+    <div className="flex min-h-[100dvh] bg-[#e9dfc7] text-slate-200 font-sans">
       {/* Mobil perde */}
       {sidebarOpen && <div className="fixed inset-0 bg-black/60 z-30 md:hidden" onClick={() => setSidebarOpen(false)} />}
 

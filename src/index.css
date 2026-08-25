@@ -111,7 +111,7 @@
   }
 
   ::placeholder { color: #a08f6e; }
-  ::selection { background: #b4432f; color: #f2e9d6; }
+  ::selection { background: #2f2a20; color: #e9dfc7; }
 }
 
 @layer utilities {
