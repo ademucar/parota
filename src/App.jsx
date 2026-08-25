@@ -167,7 +167,7 @@ const CARD = "bg-[#efe6d2] border border-[#c9b591] rounded-[3px] cerceve";
 /* ============================ KÜÇÜK BİLEŞENLER ============================ */
 const SidebarItem = ({ icon: Icon, label, isActive, onClick, badge }) => (
   <button onClick={onClick}
-    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-[2px] text-[13px] uppercase tracking-[0.07em] transition-colors ${isActive ? 'bg-slate-200 text-[#efe6d2] font-semibold' : 'text-slate-400 hover:bg-[#dccca8] hover:text-slate-200'}`}>
+    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-[2px] text-[13px] uppercase tracking-[0.07em] transition-colors nav3d ${isActive ? 'bg-slate-200 text-[#efe6d2] font-semibold nav3d-aktif border border-slate-200' : 'text-slate-400 hover:bg-[#dccca8] hover:text-slate-200 border border-transparent hover:border-slate-200'}`}>
     <Icon size={17} strokeWidth={1.6} />
     <span className="flex-1 text-left">{label}</span>
     {badge > 0 && <span className="text-[10px] border border-red-500 text-red-500 px-1.5 rounded-[2px] font-bold">{badge}</span>}
@@ -1993,7 +1993,7 @@ export default function App() {
               <CalendarIcon size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
               <select value={`${calCursor.getFullYear()}-${calCursor.getMonth()}`}
                 onChange={e => { const [y, m] = e.target.value.split('-').map(Number); setCalCursor(new Date(y, m, 1)); setSelectedDay(null); }}
-                className="w-full appearance-none bg-transparent hover:bg-slate-800 text-slate-400 hover:text-slate-200 rounded-xl pl-11 pr-9 py-3 text-sm capitalize outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer transition-colors">
+                className="w-full appearance-none bg-[#f6efdd] border border-slate-200 text-slate-300 hover:text-slate-200 rounded-[2px] pl-11 pr-9 py-2.5 text-sm capitalize outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer b3d-mini">
                 {Array.from({ length: 13 }, (_, i) => addMonths(simdi, i - 6)).map(d => (
                   <option key={`${d.getFullYear()}-${d.getMonth()}`} value={`${d.getFullYear()}-${d.getMonth()}`} className="bg-[#efe6d2]">
                     {d.toLocaleDateString(TR, { month: 'long', year: 'numeric' })}
@@ -2005,8 +2005,9 @@ export default function App() {
           </div>
         </nav>
         <div className="shrink-0 p-4 border-t border-slate-800/60">
-          <div className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-900 cursor-pointer border border-transparent hover:border-slate-800"
-            onClick={() => supabase.auth.signOut()}>
+          <div role="button" tabIndex={0} className="flex items-center gap-3 p-3 rounded-[2px] bg-[#f6efdd] cursor-pointer border border-slate-200 b3d-mini"
+            onClick={() => supabase.auth.signOut()}
+            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); supabase.auth.signOut(); } }}>
             <div aria-hidden="true" className="w-10 h-10 rounded-full bg-indigo-600 text-[#f2e9d6] flex items-center justify-center text-sm font-bold shrink-0 select-none">
               {basHarfler(userName)}
             </div>

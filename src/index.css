@@ -155,6 +155,13 @@
   .b3d:disabled {
     box-shadow: 2px 2px 0 #a08f6e;
   }
+  /* Menü öğeleri: pasifken düz, üzerine gelince kalkar, aktif olan sabit duruyor */
+  .nav3d { transition: transform .07s ease, box-shadow .07s ease; }
+  .nav3d:hover { box-shadow: 2px 2px 0 #2f2a20; transform: translate(-1px, -1px); }
+  .nav3d:active { box-shadow: 0 0 0 #2f2a20; transform: translate(2px, 2px); }
+  .nav3d-aktif { box-shadow: 3px 3px 0 #2f2a20; }
+  .nav3d-aktif:hover { box-shadow: 4px 4px 0 #2f2a20; transform: translate(-1px, -1px); }
+
   /* Küçük ikon butonları için ince sürüm */
   .b3d-mini {
     box-shadow: 2px 2px 0 #2f2a20;
