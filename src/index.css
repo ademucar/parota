@@ -138,6 +138,32 @@
 }
 
 @layer utilities {
+  /* Basılabilir 3B yüzey — sert (bulanıksız) gölge, tıklayınca gerçekten çöker.
+     Kâğıt/matbaa dilinde damga hissi verir. */
+  .b3d {
+    box-shadow: 3px 3px 0 #2f2a20;
+    transition: transform .07s ease, box-shadow .07s ease;
+  }
+  .b3d:hover:not(:disabled) {
+    box-shadow: 4px 4px 0 #2f2a20;
+    transform: translate(-1px, -1px);
+  }
+  .b3d:active:not(:disabled) {
+    box-shadow: 0 0 0 #2f2a20;
+    transform: translate(3px, 3px);
+  }
+  .b3d:disabled {
+    box-shadow: 2px 2px 0 #a08f6e;
+  }
+  /* Küçük ikon butonları için ince sürüm */
+  .b3d-mini {
+    box-shadow: 2px 2px 0 #2f2a20;
+    transition: transform .07s ease, box-shadow .07s ease;
+  }
+  .b3d-mini:hover:not(:disabled) { box-shadow: 3px 3px 0 #2f2a20; transform: translate(-1px,-1px); }
+  .b3d-mini:active:not(:disabled) { box-shadow: 0 0 0 #2f2a20; transform: translate(2px,2px); }
+  .b3d-mini:disabled { box-shadow: 1px 1px 0 #a08f6e; }
+
   /* Basılı form hissi veren çift çerçeve */
   .cerceve {
     box-shadow: 0 0 0 3px #e4d8be, 0 0 0 4px #c9b591;

@@ -211,7 +211,7 @@ const SummaryCard = ({ title, amount, subtitle, badgeText, badgeType, icon: Icon
   const badges = { positive: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20', warning: 'bg-red-500/10 text-red-400 border border-red-500/20', neutral: 'bg-slate-800 text-slate-300 border border-slate-700' };
   return (
     <button type="button" onClick={onClick}
-      className="text-left bg-[#efe6d2] border border-slate-800/80 rounded-2xl p-4 sm:p-6 flex flex-col justify-between hover:border-indigo-500/60 transition-colors group relative overflow-hidden">
+      className="text-left bg-[#efe6d2] border border-slate-800/80 rounded-2xl p-4 sm:p-6 flex flex-col justify-between hover:border-indigo-500/60 transition-colors group relative overflow-hidden b3d">
       <div aria-hidden className="absolute inset-0 opacity-[0.055] pointer-events-none"
         style={{ backgroundImage: "linear-gradient(#c7dade 1px, transparent 1px), linear-gradient(90deg, #c7dade 1px, transparent 1px)", backgroundSize: "22px 22px" }} />
       <div aria-hidden className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-indigo-500/60 via-indigo-500/10 to-transparent" />
@@ -252,7 +252,7 @@ const Modal = ({ title, icon: Icon, onClose, children }) => (
   <div className="fixed inset-0 bg-[#2f2a20]/45 backdrop-blur-[2px] flex items-end sm:items-center justify-center z-[60] sm:p-4"
     onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
     <div className="bg-[#efe6d2] border border-slate-700 rounded-t-2xl sm:rounded-2xl w-full max-w-lg p-5 sm:p-6 relative shadow-2xl max-h-[92vh] overflow-y-auto pb-[max(1.25rem,env(safe-area-inset-bottom))]">
-      <button onClick={onClose} className="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800 p-1.5 rounded-lg"><X size={20} /></button>
+      <button onClick={onClose} className="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800 p-1.5 rounded-lg b3d-mini"><X size={20} /></button>
       <div className="flex items-center gap-3 mb-6"><div className="p-2 bg-indigo-500/20 text-indigo-400 rounded-lg"><Icon size={24} /></div><h2 className="text-xl font-bold text-[#f2e9d6]">{title}</h2></div>
       {children}
     </div>
@@ -282,7 +282,7 @@ const PaymentRow = ({ item, onToggle, onDelete, onEdit, adet = 0, acik, onAcKapa
               <span className="truncate">{item.payments?.title}</span>
               {adet > 1 && (
                 <button type="button" onClick={(e) => { e.stopPropagation(); onAcKapa?.(); }}
-                  className="shrink-0 text-[10px] font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 px-2 py-0.5 rounded-full flex items-center gap-1">
+                  className="shrink-0 text-[10px] font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 px-2 py-0.5 rounded-full flex items-center gap-1 b3d">
                   {adet} taksit <ChevronRight size={11} className={`transition-transform ${acik ? 'rotate-90' : ''}`} />
                 </button>
               )}
@@ -311,13 +311,13 @@ const PaymentRow = ({ item, onToggle, onDelete, onEdit, adet = 0, acik, onAcKapa
           <div className="hidden sm:flex items-center gap-1.5">
             <button onClick={() => onToggle(item)} disabled={kilitli}
               title={kilitli ? 'Vadesi gelmedi' : paid ? 'Geri al' : 'Ödendi işaretle'}
-              className={`p-2 rounded-lg border border-slate-700 transition-all ${kilitli ? 'bg-slate-900 text-slate-700 cursor-not-allowed' : paid ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-800 text-slate-400 hover:bg-emerald-500/20 hover:text-emerald-400'}`}>
+              className={`p-2 rounded-lg border border-slate-700 transition-all ${kilitli ? 'bg-slate-900 text-slate-700 cursor-not-allowed' : paid ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-800 text-slate-400 hover:bg-emerald-500/20 hover:text-emerald-400'} b3d-mini`}>
               {paid ? <RotateCcw size={18} /> : <CheckCircle size={20} />}
             </button>
             <button onClick={() => onEdit(item)} title="Düzenle"
-              className="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-indigo-400 border border-slate-700"><Pencil size={16} /></button>
+              className="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-indigo-400 border border-slate-700 b3d-mini"><Pencil size={16} /></button>
             <button onClick={() => onDelete(item)} title="Sil"
-              className="p-2 rounded-lg bg-slate-800 text-slate-500 hover:bg-red-500/20 hover:text-red-400 border border-slate-700"><Trash2 size={16} /></button>
+              className="p-2 rounded-lg bg-slate-800 text-slate-500 hover:bg-red-500/20 hover:text-red-400 border border-slate-700 b3d-mini"><Trash2 size={16} /></button>
           </div>
         </div>
       </div>
@@ -325,13 +325,13 @@ const PaymentRow = ({ item, onToggle, onDelete, onEdit, adet = 0, acik, onAcKapa
       {/* Mobilde butonlar alt satırda, geniş dokunma alanıyla */}
       <div className="flex sm:hidden items-center gap-2 mt-3">
         <button onClick={() => onToggle(item)} disabled={kilitli}
-          className={`flex-1 py-2.5 rounded-lg border border-slate-700 flex items-center justify-center gap-2 text-xs font-medium active:scale-95 transition-transform ${kilitli ? 'bg-slate-900 text-slate-700' : paid ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-800 text-slate-300'}`}>
+          className={`flex-1 py-2.5 rounded-lg border border-slate-700 flex items-center justify-center gap-2 text-xs font-medium active:scale-95 transition-transform ${kilitli ? 'bg-slate-900 text-slate-700' : paid ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-800 text-slate-300'} b3d`}>
           {kilitli ? <>Vadesi gelmedi</> : paid ? <><RotateCcw size={15} /> Geri al</> : <><CheckCircle size={15} /> Ödendi</>}
         </button>
         <button onClick={() => onEdit(item)} aria-label="Düzenle"
-          className="w-11 h-10 rounded-lg bg-slate-800 text-slate-400 border border-slate-700 flex items-center justify-center active:scale-95 transition-transform"><Pencil size={16} /></button>
+          className="w-11 h-10 rounded-lg bg-slate-800 text-slate-400 border border-slate-700 flex items-center justify-center active:scale-95 transition-transform b3d-mini"><Pencil size={16} /></button>
         <button onClick={() => onDelete(item)} aria-label="Sil"
-          className="w-11 h-10 rounded-lg bg-slate-800 text-slate-500 border border-slate-700 flex items-center justify-center active:scale-95 transition-transform"><Trash2 size={16} /></button>
+          className="w-11 h-10 rounded-lg bg-slate-800 text-slate-500 border border-slate-700 flex items-center justify-center active:scale-95 transition-transform b3d-mini"><Trash2 size={16} /></button>
       </div>
 
       {total > 1 && item.installment_number && (
@@ -516,11 +516,11 @@ const Login = () => {
           {tekrarGonderildi && <div className="mt-4 text-sm p-3 rounded-xl border bg-emerald-500/10 border-emerald-500/50 text-emerald-400">Doğrulama bağlantısı yeniden gönderildi.</div>}
 
           <button type="button" onClick={tekrarGonder} disabled={loading || tekrarGonderildi}
-            className="mt-5 w-full py-3 rounded-xl text-sm font-medium text-slate-200 bg-[#efe6d2] border border-slate-700 hover:border-slate-600 disabled:opacity-50 flex items-center justify-center gap-2">
+            className="mt-5 w-full py-3 rounded-xl text-sm font-medium text-slate-200 bg-[#efe6d2] border border-slate-700 hover:border-slate-600 disabled:opacity-50 flex items-center justify-center gap-2 b3d">
             {loading ? <Loader2 className="animate-spin" size={18} /> : <RotateCcw size={16} />} Bağlantıyı tekrar gönder
           </button>
           <button type="button" onClick={() => { setDogrulamaBekliyor(''); setTekrarGonderildi(false); setMod('giris'); setError(''); }}
-            className="mt-3 w-full py-3 rounded-xl text-sm font-semibold text-[#f2e9d6] bg-indigo-600 hover:bg-indigo-700">
+            className="mt-3 w-full py-3 rounded-xl text-sm font-semibold text-[#f2e9d6] bg-indigo-600 hover:bg-indigo-700 b3d border border-slate-200">
             Girişe Dön
           </button>
         </div>
@@ -608,7 +608,7 @@ const Login = () => {
               </div>
             )}
 
-            <button type="submit" disabled={loading} className="w-full flex justify-center items-center py-3 rounded-xl text-sm font-semibold text-[#f2e9d6] bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 shadow-lg shadow-indigo-500/20 transition-colors">
+            <button type="submit" disabled={loading} className="w-full flex justify-center items-center py-3 rounded-xl text-sm font-semibold text-[#f2e9d6] bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 shadow-lg shadow-indigo-500/20 transition-colors b3d border border-slate-200">
               {loading ? <Loader2 className="animate-spin" size={20} /> : (isReset ? 'Sıfırlama Bağlantısı Gönder' : isRegister ? 'Kayıt Ol' : 'Giriş Yap')}
             </button>
           </form>
@@ -619,7 +619,7 @@ const Login = () => {
                 <div className="flex-1 h-px bg-slate-800" /><span className="text-xs text-slate-500">veya</span><div className="flex-1 h-px bg-slate-800" />
               </div>
               <button type="button" onClick={googleGiris} disabled={google}
-                className="w-full flex items-center justify-center gap-3 py-3 rounded-xl text-sm font-medium text-slate-200 bg-[#efe6d2] border border-slate-700 hover:border-slate-600 hover:bg-slate-800 disabled:opacity-50 transition-colors">
+                className="w-full flex items-center justify-center gap-3 py-3 rounded-xl text-sm font-medium text-slate-200 bg-[#efe6d2] border border-slate-700 hover:border-slate-600 hover:bg-slate-800 disabled:opacity-50 transition-colors b3d">
                 {google ? <Loader2 className="animate-spin" size={18} /> : (
                   <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.9 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
                 )}
@@ -698,7 +698,7 @@ const SifreYenile = ({ onDone, showToast }) => {
             </div>
             {password2 && password !== password2 && <p className="text-[11px] text-red-400 mt-1.5">Şifreler eşleşmiyor.</p>}
           </div>
-          <button type="submit" disabled={loading} className="w-full flex justify-center items-center py-3 rounded-xl text-sm font-semibold text-[#f2e9d6] bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 shadow-lg shadow-indigo-500/20">
+          <button type="submit" disabled={loading} className="w-full flex justify-center items-center py-3 rounded-xl text-sm font-semibold text-[#f2e9d6] bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 shadow-lg shadow-indigo-500/20 b3d border border-slate-200">
             {loading ? <Loader2 className="animate-spin" size={20} /> : <><Check size={18} className="mr-2" /> Şifreyi Güncelle</>}
           </button>
         </form>
@@ -844,7 +844,7 @@ const PaymentModal = ({ onClose, user, categories, onSuccess, editing, occurrenc
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {Object.entries(TYPE_LABEL).map(([id, label]) => (
                   <button type="button" key={id} onClick={() => set('type', id)}
-                    className={`py-2 text-sm rounded-xl border font-medium transition-all ${f.type === id ? 'bg-indigo-600/20 border-indigo-500 text-indigo-400' : 'bg-[#e9dfc7] border-slate-700 text-slate-400 hover:border-slate-600'}`}>{label}</button>
+                    className={`py-2 text-sm rounded-xl border font-medium transition-all ${f.type === id ? 'bg-indigo-600/20 border-indigo-500 text-indigo-400' : 'bg-[#e9dfc7] border-slate-700 text-slate-400 hover:border-slate-600'} b3d`}>{label}</button>
                 ))}
               </div>
             </div>
@@ -890,7 +890,7 @@ const PaymentModal = ({ onClose, user, categories, onSuccess, editing, occurrenc
           <div className="col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[['isAutoPay', 'Otomatik ödeme talimatı var'], ['isPinned', 'Önemli olarak işaretle']].map(([key, label]) => (
               <button type="button" key={key} onClick={() => set(key, !f[key])}
-                className={`flex items-center justify-between p-3 rounded-xl border transition-all ${f[key] ? 'bg-indigo-600/10 border-indigo-500 text-indigo-300' : 'bg-[#e9dfc7] border-slate-700 text-slate-400'}`}>
+                className={`flex items-center justify-between p-3 rounded-xl border transition-all ${f[key] ? 'bg-indigo-600/10 border-indigo-500 text-indigo-300' : 'bg-[#e9dfc7] border-slate-700 text-slate-400'} b3d`}>
                 <span className="text-sm font-medium">{label}</span>
                 <span className={`w-10 h-6 rounded-full flex items-center px-1 transition-colors ${f[key] ? 'bg-indigo-600 justify-end' : 'bg-slate-700 justify-start'}`}>
                   <span className="w-4 h-4 bg-white rounded-full block" />
@@ -944,7 +944,7 @@ const PaymentModal = ({ onClose, user, categories, onSuccess, editing, occurrenc
         </div>
 
         <button type="submit" disabled={loading || categories.length === 0}
-          className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-[#f2e9d6] font-medium py-3.5 rounded-xl flex justify-center items-center gap-2">
+          className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-[#f2e9d6] font-medium py-3.5 rounded-xl flex justify-center items-center gap-2 b3d border border-slate-200">
           {loading ? <Loader2 className="animate-spin" size={20} /> : <><Check size={18} /> {isEdit ? 'Güncelle' : 'Kaydet'}</>}
         </button>
       </form>
@@ -975,7 +975,7 @@ const OccurrenceModal = ({ item, onClose, onSaved, showToast }) => {
           <input type="number" step="0.01" min="0" required value={amount} onChange={e => setAmount(e.target.value)} className={INPUT} /></div>
         <div><label className="block text-sm font-medium text-slate-300 mb-1.5">Ödeme Tarihi</label>
           <input type="date" required value={date} onChange={e => setDate(e.target.value)} className={`${INPUT} [color-scheme:dark]`} /></div>
-        <button type="submit" disabled={saving} className="w-full bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] font-medium py-3 rounded-xl flex justify-center items-center gap-2">
+        <button type="submit" disabled={saving} className="w-full bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] font-medium py-3 rounded-xl flex justify-center items-center gap-2 b3d border border-slate-200">
           {saving ? <Loader2 className="animate-spin" size={18} /> : <><Check size={18} /> Kaydet</>}
         </button>
       </form>
@@ -1011,7 +1011,7 @@ const CategoryModal = ({ cat, onClose, onSaved, showToast }) => {
             ))}
           </div>
         </div>
-        <button type="submit" disabled={saving || !name.trim()} className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-[#f2e9d6] font-medium py-3 rounded-xl flex justify-center items-center gap-2">
+        <button type="submit" disabled={saving || !name.trim()} className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-[#f2e9d6] font-medium py-3 rounded-xl flex justify-center items-center gap-2 b3d border border-slate-200">
           {saving ? <Loader2 className="animate-spin" size={18} /> : <><Check size={18} /> Kaydet</>}
         </button>
       </form>
@@ -1050,7 +1050,7 @@ const IncomeModal = ({ onClose, user, onSaved, showToast, tekSeferlik = false })
           <div className="flex flex-wrap gap-2 mt-2">
             {(tekSeferlik ? ['Prim', 'Hediye', 'Satış', 'Borç Tahsilatı', 'Diğer'] : ['Maaş', 'Burs', 'Ek İş', 'Harçlık']).map(h => (
               <button key={h} type="button" onClick={() => setTitle(h)}
-                className={`text-xs px-3 py-1.5 rounded-lg border ${title === h ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300' : 'bg-[#e9dfc7] border-slate-700 text-slate-400'}`}>{h}</button>
+                className={`text-xs px-3 py-1.5 rounded-lg border ${title === h ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300' : 'bg-[#e9dfc7] border-slate-700 text-slate-400'} b3d`}>{h}</button>
             ))}
           </div>
         </div>
@@ -1064,14 +1064,14 @@ const IncomeModal = ({ onClose, user, onSaved, showToast, tekSeferlik = false })
         </div>
         {!tekSeferlik && (
           <button type="button" onClick={() => setRecurring(!recurring)}
-            className={`w-full flex items-center justify-between p-3 rounded-xl border transition-all ${recurring ? 'bg-emerald-600/10 border-emerald-500 text-emerald-300' : 'bg-[#e9dfc7] border-slate-700 text-slate-400'}`}>
+            className={`w-full flex items-center justify-between p-3 rounded-xl border transition-all ${recurring ? 'bg-emerald-600/10 border-emerald-500 text-emerald-300' : 'bg-[#e9dfc7] border-slate-700 text-slate-400'} b3d`}>
             <span className="text-sm font-medium text-left">Her ay tekrar eder<br /><span className="text-[11px] opacity-70">Maaş gibi düzenli gelirlerde açık kalsın</span></span>
             <span className={`w-10 h-6 rounded-full flex items-center px-1 shrink-0 transition-colors ${recurring ? 'bg-emerald-600 justify-end' : 'bg-slate-700 justify-start'}`}>
               <span className="w-4 h-4 bg-white rounded-full block" />
             </span>
           </button>
         )}
-        <button type="submit" disabled={saving} className="w-full bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] font-medium py-3 rounded-xl flex justify-center items-center gap-2">
+        <button type="submit" disabled={saving} className="w-full bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] font-medium py-3 rounded-xl flex justify-center items-center gap-2 b3d border border-slate-200">
           {saving ? <Loader2 className="animate-spin" size={18} /> : <><Check size={18} /> Kaydet</>}
         </button>
       </form>
@@ -1100,7 +1100,7 @@ const BudgetPanel = ({ gelir, odenen, bekleyen, birikim = 0, ayAdi, onGelirEkle,
           </div>
         </div>
         <div className="flex items-center gap-4 relative z-10">
-          <button onClick={onGelirEkle} className="bg-emerald-600 hover:bg-emerald-700 text-[#f2e9d6] px-5 py-2.5 rounded-xl text-sm font-medium flex items-center justify-center gap-2 shrink-0">
+          <button onClick={onGelirEkle} className="bg-emerald-600 hover:bg-emerald-700 text-[#f2e9d6] px-5 py-2.5 rounded-xl text-sm font-medium flex items-center justify-center gap-2 shrink-0 b3d border border-slate-200">
             <Plus size={16} /> Gelir Ekle
           </button>
         </div>
@@ -1124,7 +1124,7 @@ const BudgetPanel = ({ gelir, odenen, bekleyen, birikim = 0, ayAdi, onGelirEkle,
           <p className="text-slate-400 text-xs mb-1">Gelir</p>
           <p className="text-lg font-semibold text-emerald-400">{money(gelir)}</p>
           <button onClick={onBirikimeAktar}
-            className="mt-2 text-xs bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/40 text-indigo-300 px-3 py-1.5 rounded-lg flex items-center gap-1.5 whitespace-nowrap">
+            className="mt-2 text-xs bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/40 text-indigo-300 px-3 py-1.5 rounded-lg flex items-center gap-1.5 whitespace-nowrap b3d">
             <PiggyBank size={13} /> Birikime aktar
           </button>
         </div>
@@ -1177,7 +1177,7 @@ const EpostaDogrulandi = ({ onDevam }) => (
         Hesabın kullanıma hazır. Şimdi giriş yapabilirsin.
       </p>
       <button type="button" onClick={onDevam}
-        className="mt-7 w-full py-3 rounded-xl text-sm font-semibold text-[#f2e9d6] bg-indigo-600 hover:bg-indigo-700 shadow-lg shadow-indigo-500/20">
+        className="mt-7 w-full py-3 rounded-xl text-sm font-semibold text-[#f2e9d6] bg-indigo-600 hover:bg-indigo-700 shadow-lg shadow-indigo-500/20 b3d border border-slate-200">
         Giriş Yap
       </button>
     </div>
@@ -1205,7 +1205,7 @@ const ProfilKarti = ({ user, onSaved, showToast }) => {
       <form onSubmit={kaydet} className="flex flex-col sm:flex-row gap-3">
         <input value={ad} onChange={e => setAd(e.target.value)} maxLength={40} className={`${INPUT} flex-1`} placeholder="Adın (örn. Adem)" />
         <button type="submit" disabled={saving || ad.trim() === mevcut.trim()}
-          className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 text-[#f2e9d6] px-5 py-3 rounded-xl text-sm font-medium flex items-center justify-center gap-2 shrink-0">
+          className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 text-[#f2e9d6] px-5 py-3 rounded-xl text-sm font-medium flex items-center justify-center gap-2 shrink-0 b3d border border-slate-200">
           {saving ? <Loader2 className="animate-spin" size={18} /> : <><Check size={16} /> Kaydet</>}
         </button>
       </form>
@@ -1226,10 +1226,10 @@ const HesapPanel = ({ bakiye, gelir, odenen, birikim, onParaEkle, onBirikimeAkta
         <p className="text-slate-500 text-xs mt-2">Gelirlerin eklenir, ödediklerin ve birikime ayırdıkların düşülür.</p>
       </div>
       <div className="flex gap-2 shrink-0">
-        <button onClick={onParaEkle} className="bg-emerald-600 hover:bg-emerald-700 text-[#f2e9d6] px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2">
+        <button onClick={onParaEkle} className="bg-emerald-600 hover:bg-emerald-700 text-[#f2e9d6] px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2 b3d border border-slate-200">
           <Plus size={16} /> Para Ekle
         </button>
-        <button onClick={onBirikimeAktar} className="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2">
+        <button onClick={onBirikimeAktar} className="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2 b3d">
           <PiggyBank size={16} /> Birikime Aktar
         </button>
       </div>
@@ -1293,7 +1293,7 @@ const GoalModal = ({ onClose, user, onSaved, showToast, editing }) => {
           <div className="flex flex-wrap gap-2 mt-2">
             {['Acil Durum', 'Laptop', 'Tatil', 'Araba', 'Telefon'].map(h => (
               <button key={h} type="button" onClick={() => setTitle(h)}
-                className={`text-xs px-3 py-1.5 rounded-lg border ${title === h ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300' : 'bg-[#e9dfc7] border-slate-700 text-slate-400'}`}>{h}</button>
+                className={`text-xs px-3 py-1.5 rounded-lg border ${title === h ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300' : 'bg-[#e9dfc7] border-slate-700 text-slate-400'} b3d`}>{h}</button>
             ))}
           </div>
         </div>
@@ -1316,7 +1316,7 @@ const GoalModal = ({ onClose, user, onSaved, showToast, editing }) => {
             ))}
           </div>
         </div>
-        <button type="submit" disabled={saving} className="w-full bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] font-medium py-3 rounded-xl flex justify-center items-center gap-2">
+        <button type="submit" disabled={saving} className="w-full bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] font-medium py-3 rounded-xl flex justify-center items-center gap-2 b3d border border-slate-200">
           {saving ? <Loader2 className="animate-spin" size={18} /> : <><Check size={18} /> Kaydet</>}
         </button>
       </form>
@@ -1359,7 +1359,7 @@ const TransferModal = ({ goal, hedefler, onClose, user, onSaved, showToast, kala
         <div className="grid grid-cols-2 gap-2">
           {[['ekle', 'Para Aktar', ArrowDownLeft], ['cek', 'Geri Çek', ArrowUpRight]].map(([id, etiket, Ikon]) => (
             <button key={id} type="button" onClick={() => setYon(id)}
-              className={`py-2.5 rounded-xl border text-sm font-medium flex items-center justify-center gap-2 transition-all ${yon === id ? (id === 'ekle' ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300' : 'bg-orange-600/20 border-orange-500 text-orange-300') : 'bg-[#e9dfc7] border-slate-700 text-slate-400'}`}>
+              className={`py-2.5 rounded-xl border text-sm font-medium flex items-center justify-center gap-2 transition-all ${yon === id ? (id === 'ekle' ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300' : 'bg-orange-600/20 border-orange-500 text-orange-300') : 'bg-[#e9dfc7] border-slate-700 text-slate-400'} b3d`}>
               <Ikon size={16} /> {etiket}
             </button>
           ))}
@@ -1398,7 +1398,7 @@ const TransferModal = ({ goal, hedefler, onClose, user, onSaved, showToast, kala
           <input value={not} onChange={e => setNot(e.target.value)} className={INPUT} placeholder="Örn: maaş günü aktarımı" />
         </div>
 
-        <button type="submit" disabled={saving} className={`w-full text-[#f2e9d6] font-medium py-3 rounded-xl flex justify-center items-center gap-2 ${yon === 'ekle' ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-orange-600 hover:bg-orange-700'}`}>
+        <button type="submit" disabled={saving} className={`w-full text-[#f2e9d6] font-medium py-3 rounded-xl flex justify-center items-center gap-2 ${yon === 'ekle' ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-orange-600 hover:bg-orange-700'} b3d border border-slate-200`}>
           {saving ? <Loader2 className="animate-spin" size={18} /> : <><Check size={18} /> {yon === 'ekle' ? 'Aktar' : 'Çek'}</>}
         </button>
       </form>
@@ -1427,9 +1427,9 @@ const CalendarPanel = ({ cursor, setCursor, occurrences, onPickDay, selectedDay 
       <div className="flex justify-between items-center mb-6">
         <h3 className="text-lg font-bold text-white capitalize">{cursor.toLocaleDateString(TR, { month: 'long', year: 'numeric' })}</h3>
         <div className="flex items-center gap-2">
-          <button onClick={() => setCursor(addMonths(cursor, -1))} className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800"><ChevronLeft size={18} /></button>
-          <button onClick={() => setCursor(addMonths(cursor, 1))} className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800"><ChevronRight size={18} /></button>
-          <button onClick={() => { setCursor(new Date()); onPickDay(null); }} className="ml-2 text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg">Bugün</button>
+          <button onClick={() => setCursor(addMonths(cursor, -1))} className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 b3d-mini"><ChevronLeft size={18} /></button>
+          <button onClick={() => setCursor(addMonths(cursor, 1))} className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 b3d-mini"><ChevronRight size={18} /></button>
+          <button onClick={() => { setCursor(new Date()); onPickDay(null); }} className="ml-2 text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg b3d">Bugün</button>
         </div>
       </div>
       <div className="grid grid-cols-7 gap-y-3 text-center">
@@ -1978,7 +1978,7 @@ export default function App() {
             <h2 className="marka-yazi text-[26px] leading-none text-slate-200">PAROTA</h2>
             <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-slate-400">Ödeme Takibi</p>
           </div>
-          <button onClick={() => setSidebarOpen(false)} className="md:hidden p-1.5 text-slate-400 hover:text-white bg-slate-900 rounded-lg"><X size={18} /></button>
+          <button onClick={() => setSidebarOpen(false)} className="md:hidden p-1.5 text-slate-400 hover:text-white bg-slate-900 rounded-lg b3d-mini"><X size={18} /></button>
         </div>
         <nav className="flex-1 min-h-0 px-4 space-y-1 overflow-y-auto">
           {navItems.map((it, i) => it === null
@@ -2022,7 +2022,7 @@ export default function App() {
       <main className="flex-1 min-w-0 flex flex-col pb-[env(safe-area-inset-bottom)]">
         <header className="flex justify-between items-center gap-4 py-4 px-4 sm:px-8 border-b border-slate-800/50 bg-[#e9dfc7]/80 backdrop-blur-md sticky top-0 z-20">
           <div className="flex items-center gap-3 min-w-0">
-            <button className="md:hidden p-2 bg-slate-900 rounded-lg border border-slate-800" onClick={() => setSidebarOpen(!sidebarOpen)}><Menu size={18} /></button>
+            <button className="md:hidden p-2 bg-slate-900 rounded-lg border border-slate-800 b3d-mini" onClick={() => setSidebarOpen(!sidebarOpen)}><Menu size={18} /></button>
             <div className="min-w-0">
               <h1 className="text-xl sm:text-2xl font-bold text-white truncate">Merhaba, {userName}! 👋</h1>
               <p className="text-slate-400 text-sm mt-1 hidden sm:block">Finansal durumunuzu buradan yönetebilirsiniz.</p>
@@ -2082,7 +2082,7 @@ export default function App() {
                     <div className="p-2">
                       {upcoming.length === 0
                         ? <EmptyState icon={CheckCircle} title="Yaklaşan ödemen yok" desc="Şu an bekleyen bir ödemen görünmüyor."
-                            action={<button onClick={() => setPaymentModal({})} className="mt-5 bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] px-5 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2"><Plus size={16} /> Ödeme Ekle</button>} />
+                            action={<button onClick={() => setPaymentModal({})} className="mt-5 bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] px-5 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2 b3d border border-slate-200"><Plus size={16} /> Ödeme Ekle</button>} />
                         : grupla(upcoming).slice(0, 5).map(({ ana, hepsi }) => (
                             <React.Fragment key={ana.payment_id}>
                               <PaymentRow item={ana} {...rowProps} adet={hepsi.length}
@@ -2151,14 +2151,14 @@ export default function App() {
                 <Filter size={16} className="text-slate-500 mx-2 hidden sm:block" />
                 {[['hepsi', 'Hepsi'], ['bekliyor', 'Bekleyen'], ['geciken', 'Geciken'], ['odendi', 'Ödenen'], ['onemli', 'Önemli']].map(([id, label]) => (
                   <button key={id} onClick={() => setStatusFilter(id)}
-                    className={`px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium border transition-all ${statusFilter === id ? 'bg-indigo-600/20 border-indigo-500 text-indigo-400' : 'bg-[#e9dfc7] border-slate-800 text-slate-400 hover:border-slate-700'}`}>{label}</button>
+                    className={`px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium border transition-all ${statusFilter === id ? 'bg-indigo-600/20 border-indigo-500 text-indigo-400' : 'bg-[#e9dfc7] border-slate-800 text-slate-400 hover:border-slate-700'} b3d`}>{label}</button>
                 ))}
                 <div className="w-full sm:w-auto sm:ml-auto flex items-center gap-2 mt-1 sm:mt-0">
                   <button onClick={() => exportPdf(filteredList, FILTER_LABEL[statusFilter])}
-                    className="flex-1 sm:flex-none justify-center bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2.5 rounded-xl flex items-center gap-2 text-sm font-medium border border-slate-700">
+                    className="flex-1 sm:flex-none justify-center bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2.5 rounded-xl flex items-center gap-2 text-sm font-medium border border-slate-700 b3d">
                     <FileDown size={16} /> PDF
                   </button>
-                  <button onClick={() => setPaymentModal({})} className="flex-1 sm:flex-none justify-center bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] px-4 py-2.5 rounded-xl flex items-center gap-2 text-sm font-medium shadow-lg shadow-indigo-500/20">
+                  <button onClick={() => setPaymentModal({})} className="flex-1 sm:flex-none justify-center bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] px-4 py-2.5 rounded-xl flex items-center gap-2 text-sm font-medium shadow-lg shadow-indigo-500/20 b3d border border-slate-200">
                     <Plus size={16} /> Ödeme Ekle
                   </button>
                 </div>
@@ -2171,7 +2171,7 @@ export default function App() {
                       {grupluGorunum ? `Ödemeler (${grupla(filteredList).length})` : `Taksitler (${filteredList.length})`}
                     </h3>
                     <button onClick={() => setGrupluGorunum(v => !v)}
-                      className="text-[11px] px-2.5 py-1 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:text-white">
+                      className="text-[11px] px-2.5 py-1 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:text-white b3d">
                       {grupluGorunum ? 'Taksitleri ayrı göster' : 'Grupla'}
                     </button>
                   </div>
@@ -2196,7 +2196,7 @@ export default function App() {
                 </div>
                 {(grupluGorunum ? grupla(filteredList).length : filteredList.length) > visibleCount && (
                   <button onClick={() => setVisibleCount(v => v + PAGE_SIZE)}
-                    className="w-full py-4 text-sm text-indigo-400 hover:bg-slate-800/40 border-t border-slate-800">
+                    className="w-full py-4 text-sm text-indigo-400 hover:bg-slate-800/40 border-t border-slate-800 b3d">
                     Daha fazla göster ({(grupluGorunum ? grupla(filteredList).length : filteredList.length) - visibleCount} kayıt)
                   </button>
                 )}
@@ -2224,11 +2224,11 @@ export default function App() {
                       <div className="flex items-center gap-2 shrink-0">
                         <span className="text-slate-300 font-medium mr-1 text-sm whitespace-nowrap">{money(p.amount)}</span>
                         <button onClick={() => togglePin(p)} title="Sabitle"
-                          className={`p-2 rounded-lg border border-slate-700 ${p.is_pinned ? 'bg-yellow-500/10 text-yellow-500' : 'bg-slate-800 text-slate-500 hover:text-yellow-500'}`}><Star size={16} /></button>
+                          className={`p-2 rounded-lg border border-slate-700 ${p.is_pinned ? 'bg-yellow-500/10 text-yellow-500' : 'bg-slate-800 text-slate-500 hover:text-yellow-500'} b3d-mini`}><Star size={16} /></button>
                         <button onClick={() => setPaymentModal({ editing: p })} title="Düzenle"
-                          className="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-indigo-400 border border-slate-700"><Pencil size={16} /></button>
+                          className="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-indigo-400 border border-slate-700 b3d-mini"><Pencil size={16} /></button>
                         <button onClick={() => deletePayment(p)} title="Sil"
-                          className="p-2 rounded-lg bg-slate-800 text-slate-500 hover:bg-red-500/20 hover:text-red-400 border border-slate-700"><Trash2 size={16} /></button>
+                          className="p-2 rounded-lg bg-slate-800 text-slate-500 hover:bg-red-500/20 hover:text-red-400 border border-slate-700 b3d-mini"><Trash2 size={16} /></button>
                       </div>
                     </div>
                   ))}
@@ -2249,14 +2249,14 @@ export default function App() {
                       className={`w-6 h-6 rounded-full ${c} ${newCatColor === c ? 'ring-2 ring-white scale-110' : 'opacity-50 hover:opacity-100'} transition-all`} />
                   ))}
                 </div>
-                <button type="submit" disabled={!newCatName.trim()} className="w-full sm:w-auto justify-center bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-[#f2e9d6] px-8 py-3 rounded-xl font-medium flex items-center gap-2"><Plus size={18} /> Ekle</button>
+                <button type="submit" disabled={!newCatName.trim()} className="w-full sm:w-auto justify-center bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-[#f2e9d6] px-8 py-3 rounded-xl font-medium flex items-center gap-2 b3d border border-slate-200"><Plus size={18} /> Ekle</button>
               </form>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {categories.length === 0 && (
                   <div className="sm:col-span-2 lg:col-span-4">
                     <EmptyState icon={PieChart} title="Henüz kategori yok"
                       desc="Sık kullanılan altı kategoriyi tek tıkla oluştur, sonra dilediğini değiştir."
-                      action={<button onClick={createStarterCategories} className="mt-5 bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] px-5 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2"><Plus size={16} /> Başlangıç Kategorilerini Oluştur</button>} />
+                      action={<button onClick={createStarterCategories} className="mt-5 bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] px-5 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2 b3d border border-slate-200"><Plus size={16} /> Başlangıç Kategorilerini Oluştur</button>} />
                   </div>
                 )}
                 {categories.map(c => {
@@ -2268,8 +2268,8 @@ export default function App() {
                         <div className="min-w-0"><span className="text-white font-medium block truncate">{c.name}</span><span className="text-[11px] text-slate-500">{count} taksit</span></div>
                       </div>
                       <div className="flex gap-1 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all">
-                        <button onClick={() => setCatModal(c)} className="text-slate-500 hover:text-indigo-400 bg-slate-900 p-1.5 rounded-lg"><Pencil size={14} /></button>
-                        <button onClick={() => handleDeleteCategory(c.id)} className="text-slate-500 hover:text-red-400 bg-slate-900 p-1.5 rounded-lg"><Trash2 size={14} /></button>
+                        <button onClick={() => setCatModal(c)} className="text-slate-500 hover:text-indigo-400 bg-slate-900 p-1.5 rounded-lg b3d-mini"><Pencil size={14} /></button>
+                        <button onClick={() => handleDeleteCategory(c.id)} className="text-slate-500 hover:text-red-400 bg-slate-900 p-1.5 rounded-lg b3d-mini"><Trash2 size={14} /></button>
                       </div>
                     </div>
                   );
@@ -2313,8 +2313,8 @@ export default function App() {
                             </div>
                             <div className="flex items-center gap-2 shrink-0">
                               <span className="text-slate-300 font-medium mr-2 hidden sm:block">{money(p.amount)}</span>
-                              <button onClick={() => setPaymentModal({ editing: p })} className="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-indigo-400 border border-slate-700"><Pencil size={16} /></button>
-                              <button onClick={() => deletePayment(p)} className="p-2 rounded-lg bg-slate-800 text-slate-500 hover:bg-red-500/20 hover:text-red-400 border border-slate-700"><Trash2 size={16} /></button>
+                              <button onClick={() => setPaymentModal({ editing: p })} className="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-indigo-400 border border-slate-700 b3d-mini"><Pencil size={16} /></button>
+                              <button onClick={() => deletePayment(p)} className="p-2 rounded-lg bg-slate-800 text-slate-500 hover:bg-red-500/20 hover:text-red-400 border border-slate-700 b3d-mini"><Trash2 size={16} /></button>
                             </div>
                           </div>
                         );
@@ -2342,12 +2342,12 @@ export default function App() {
                   <div className="flex gap-2">
                     {hedeflerDolu.length > 0 && (
                       <button onClick={() => setTransferModal({})}
-                        className="bg-emerald-600 hover:bg-emerald-700 text-[#f2e9d6] px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2">
+                        className="bg-emerald-600 hover:bg-emerald-700 text-[#f2e9d6] px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2 b3d border border-slate-200">
                         <ArrowDownLeft size={16} /> Para Aktar
                       </button>
                     )}
                     <button onClick={() => setGoalModal({})}
-                      className="bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2">
+                      className="bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2 b3d border border-slate-200">
                       <Plus size={16} /> Yeni Hedef
                     </button>
                   </div>
@@ -2359,7 +2359,7 @@ export default function App() {
                 <div className={`${CARD}`}>
                   <EmptyState icon={Target} title="Henüz birikim hedefin yok"
                     desc="Bir hedef oluştur, sonra her ay bütçenden buraya para aktar. Ne kadar yaklaştığını halka üzerinde görürsün."
-                    action={<button onClick={() => setGoalModal({})} className="mt-5 bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] px-5 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2"><Plus size={16} /> İlk Hedefini Oluştur</button>} />
+                    action={<button onClick={() => setGoalModal({})} className="mt-5 bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] px-5 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2 b3d border border-slate-200"><Plus size={16} /> İlk Hedefini Oluştur</button>} />
                 </div>
               ) : (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -2391,8 +2391,8 @@ export default function App() {
                                   : <p className="text-xs text-slate-500 mt-0.5">hedefsiz kumbara</p>}
                               </div>
                               <div className="flex gap-1 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all shrink-0">
-                                <button onClick={() => setGoalModal({ editing: h })} className="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-indigo-400 border border-slate-700"><Pencil size={14} /></button>
-                                <button onClick={() => deleteGoal(h)} className="p-1.5 rounded-lg bg-slate-800 text-slate-500 hover:text-red-400 border border-slate-700"><Trash2 size={14} /></button>
+                                <button onClick={() => setGoalModal({ editing: h })} className="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-indigo-400 border border-slate-700 b3d-mini"><Pencil size={14} /></button>
+                                <button onClick={() => deleteGoal(h)} className="p-1.5 rounded-lg bg-slate-800 text-slate-500 hover:text-red-400 border border-slate-700 b3d-mini"><Trash2 size={14} /></button>
                               </div>
                             </div>
 
@@ -2414,7 +2414,7 @@ export default function App() {
                             )}
 
                             <button onClick={() => setTransferModal({ goal: h })}
-                              className="mt-4 w-full sm:w-auto bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 px-4 py-2 rounded-lg text-xs font-medium flex items-center justify-center gap-2">
+                              className="mt-4 w-full sm:w-auto bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 px-4 py-2 rounded-lg text-xs font-medium flex items-center justify-center gap-2 b3d">
                               <PiggyBank size={14} /> Para aktar / çek
                             </button>
                           </div>
@@ -2496,7 +2496,7 @@ export default function App() {
               <div className={`${CARD} p-6`}>
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-lg font-bold text-white flex items-center gap-2"><TrendingUp size={18} className="text-emerald-400" /> Gelirler</h3>
-                  <button onClick={() => setIncomeModal(true)} className="bg-emerald-600 hover:bg-emerald-700 text-[#f2e9d6] px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5"><Plus size={14} /> Ekle</button>
+                  <button onClick={() => setIncomeModal(true)} className="bg-emerald-600 hover:bg-emerald-700 text-[#f2e9d6] px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 b3d border border-slate-200"><Plus size={14} /> Ekle</button>
                 </div>
                 {incomes.length === 0
                   ? <p className="text-slate-500 text-sm">Henüz gelir yok. Maaşını eklersen ana sayfada elinde kalan parayı görürsün.</p>
@@ -2509,7 +2509,7 @@ export default function App() {
                           </div>
                           <div className="flex items-center gap-3 shrink-0">
                             <span className="text-emerald-400 font-semibold text-sm">{money(g.amount)}</span>
-                            <button onClick={() => deleteIncome(g)} className="p-1.5 rounded-lg bg-slate-800 text-slate-500 hover:text-red-400 border border-slate-700"><Trash2 size={14} /></button>
+                            <button onClick={() => deleteIncome(g)} className="p-1.5 rounded-lg bg-slate-800 text-slate-500 hover:text-red-400 border border-slate-700 b3d-mini"><Trash2 size={14} /></button>
                           </div>
                         </div>
                       ))}
@@ -2521,9 +2521,9 @@ export default function App() {
               </div>
 
               <div className={`${CARD} p-6 space-y-3`}>
-                <button onClick={() => exportPdf(occurrences, 'Tüm kayıtlar')} className="w-full flex items-center gap-2 justify-center py-3 rounded-xl bg-indigo-600/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-600/20 text-sm font-medium"><FileDown size={16} /> Tümünü PDF Olarak Dışa Aktar</button>
-                <button onClick={() => exportPdf(occurrences.filter(o => { const d = new Date(o.due_date); const t = new Date(); return d.getMonth() === t.getMonth() && d.getFullYear() === t.getFullYear(); }), 'Bu ay')} className="w-full flex items-center gap-2 justify-center py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium"><FileDown size={16} /> Bu Ayın Raporu (PDF)</button>
-                <button onClick={fetchAll} className="w-full flex items-center gap-2 justify-center py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium"><RotateCcw size={16} /> Verileri Yenile</button>
+                <button onClick={() => exportPdf(occurrences, 'Tüm kayıtlar')} className="w-full flex items-center gap-2 justify-center py-3 rounded-xl bg-indigo-600/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-600/20 text-sm font-medium b3d"><FileDown size={16} /> Tümünü PDF Olarak Dışa Aktar</button>
+                <button onClick={() => exportPdf(occurrences.filter(o => { const d = new Date(o.due_date); const t = new Date(); return d.getMonth() === t.getMonth() && d.getFullYear() === t.getFullYear(); }), 'Bu ay')} className="w-full flex items-center gap-2 justify-center py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium b3d"><FileDown size={16} /> Bu Ayın Raporu (PDF)</button>
+                <button onClick={fetchAll} className="w-full flex items-center gap-2 justify-center py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium b3d"><RotateCcw size={16} /> Verileri Yenile</button>
                 <button onClick={() => supabase.auth.signOut()} className="w-full flex items-center gap-2 justify-center py-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 text-sm font-medium"><LogOut size={16} /> Çıkış Yap</button>
               </div>
             </div>
