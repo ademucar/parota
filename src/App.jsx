@@ -539,9 +539,12 @@ const Login = () => {
         <div aria-hidden className="absolute inset-0 opacity-[0.07] pointer-events-none"
           style={{ backgroundImage: "repeating-linear-gradient(115deg, #8b7c5f 0 1px, transparent 1px 44px)" }} />
         <div className="relative z-10">
-          <div className="mb-12">
-            <h2 className="marka-yazi text-[34px] leading-none text-slate-200">PAROTA</h2>
-            <p className="mt-2.5 text-[10px] uppercase tracking-[0.3em] text-indigo-400">Ödeme Takibi</p>
+          <div className="mb-12 flex items-center gap-4">
+            <img src="/logo.png" alt="" width="56" height="56" className="w-14 h-14 shrink-0 object-contain" />
+            <div>
+              <h2 className="marka-yazi text-[32px] leading-none text-slate-200">PAROTA</h2>
+              <p className="mt-2.5 text-[10px] uppercase tracking-[0.3em] text-indigo-400">Ödeme Takibi</p>
+            </div>
           </div>
           <h1 className="text-[26px] font-semibold uppercase leading-tight text-slate-200 tracking-[0.02em]">Finansını Planla,<br /><span className="text-indigo-400">Rahatla.</span></h1>
           <p className="mt-3.5 text-[13px] text-slate-400 max-w-xs leading-relaxed">Gelir ve giderlerini takip et, geleceğini güvenle yönet.</p>
@@ -561,8 +564,9 @@ const Login = () => {
       {/* SAĞ: Form paneli */}
       <div className="flex flex-col justify-center px-5 py-12 sm:px-10 relative">
         <div className="w-full max-w-sm mx-auto">
-          <div className="mb-7 text-center lg:hidden">
-            <h2 className="marka-yazi text-[28px] leading-none text-slate-200">PAROTA</h2>
+          <div className="mb-7 flex items-center justify-center gap-3 lg:hidden">
+            <img src="/logo.png" alt="" width="44" height="44" className="w-11 h-11 shrink-0 object-contain" />
+            <h2 className="marka-yazi text-[26px] leading-none text-slate-200">PAROTA</h2>
           </div>
           <h2 className="text-center text-lg sm:text-xl font-semibold uppercase tracking-[0.06em] text-slate-200">{baslik}</h2>
           <p className="mt-2 text-center text-sm text-slate-400">
@@ -1974,8 +1978,9 @@ export default function App() {
 
       <aside className={`w-64 bg-[#e0d3b5] border-r border-[#bfa87f] border-l-[6px] border-l-indigo-600 flex flex-col shrink-0 z-40 fixed md:sticky inset-y-0 left-0 h-[100dvh] md:top-0 transition-transform duration-300 ease-out md:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="p-6 flex items-center space-x-3 mb-2 shrink-0">
+          <img src="/logo.png" alt="" width="40" height="40" className="w-10 h-10 shrink-0 object-contain" />
           <div className="flex-1 min-w-0">
-            <h2 className="marka-yazi text-[26px] leading-none text-slate-200">PAROTA</h2>
+            <h2 className="marka-yazi text-[24px] leading-none text-slate-200">PAROTA</h2>
             <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-slate-400">Ödeme Takibi</p>
           </div>
           <button onClick={() => setSidebarOpen(false)} className="md:hidden p-1.5 text-slate-400 hover:text-white bg-slate-900 rounded-lg b3d-mini"><X size={18} /></button>
