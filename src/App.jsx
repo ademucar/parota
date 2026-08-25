@@ -51,7 +51,7 @@ const addDays = (date, n) => { const d = new Date(date); d.setDate(d.getDate() +
    birbirinden ayırt edilebilir ama hiçbiri neon değil. */
 const HEX_COLORS = {
   'bg-blue-500': '#4e8b92', 'bg-green-500': '#5f9179', 'bg-purple-500': '#8b7bb0',
-  'bg-orange-500': '#cc7a45', 'bg-red-500': '#c96a52', 'bg-indigo-500': '#c06b3d',
+  'bg-orange-500': '#cc7a45', 'bg-red-500': '#c96a52', 'bg-indigo-500': '#b4432f',
   'bg-yellow-500': '#c9a227', 'bg-pink-500': '#b8768f', 'bg-teal-500': '#4a9b96'
 };
 const TYPE_LABEL = { tek_seferlik: 'Tek Sefer', taksitli: 'Taksitli', abonelik: 'Abonelik', kredi_karti: 'Ekstre' };
@@ -68,16 +68,6 @@ const nextDate = (from, periodId) => {
 };
 
 const FILTER_LABEL = { hepsi: 'Tüm kayıtlar', bekliyor: 'Bekleyenler', geciken: 'Gecikenler', odendi: 'Ödenenler', onemli: 'Önemli işaretliler' };
-
-/* Parota işareti — pusula iğnesi. Hazır ikon setinden değil, markaya ait. */
-const ParotaMark = ({ size = 24, className = "" }) => (
-  <svg viewBox="0 0 24 24" width={size} height={size} fill="none" className={className} aria-hidden="true">
-    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.1" opacity=".38" />
-    <path d="M12 2.6 15.3 12H8.7Z" fill="currentColor" />
-    <path d="M12 21.4 8.7 12h6.6Z" fill="currentColor" opacity=".38" />
-    <circle cx="12" cy="12" r="1.35" fill="currentColor" />
-  </svg>
-);
 
 /* Avatar için baş harfler. Türkçe büyütme kuralı (i → İ) için locale veriyoruz. */
 const basHarfler = (ad = '') => ad.trim().split(/[\s._-]+/).filter(Boolean).slice(0, 2)
@@ -171,16 +161,17 @@ const SifreGucu = ({ sifre }) => {
   );
 };
 
-const INPUT = "w-full bg-[#091316] border border-slate-700 text-white rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 outline-none";
-const CARD = "bg-[#10222A] border border-slate-800/80 rounded-2xl";
+const INPUT = "w-full bg-[#f6efdd] border border-slate-700 text-slate-200 rounded-[2px] px-3 py-2.5 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/40 outline-none";
+const CARD = "bg-[#efe6d2] border border-[#c9b591] rounded-[3px] cerceve";
 
 /* ============================ KÜÇÜK BİLEŞENLER ============================ */
 const SidebarItem = ({ icon: Icon, label, isActive, onClick, badge }) => (
   <button onClick={onClick}
-    className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${isActive ? 'bg-indigo-600/20 text-indigo-400 font-medium' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'}`}>
-    <Icon size={20} className={isActive ? 'text-indigo-500' : ''} />
+    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-[2px] text-[13px] uppercase tracking-[0.07em] transition-colors ${isActive ? 'bg-slate-200 text-[#efe6d2] font-semibold' : 'text-slate-400 hover:bg-[#dccca8] hover:text-slate-200'}`}>
+    <Icon size={17} strokeWidth={1.6} />
     <span className="flex-1 text-left">{label}</span>
-    {badge > 0 && <span className="text-[10px] bg-red-500/20 text-red-400 px-2 py-0.5 rounded-full font-bold">{badge}</span>}
+    {badge > 0 && <span className="text-[10px] border border-red-500 text-red-500 px-1.5 rounded-[2px] font-bold">{badge}</span>}
+    {isActive && <span className="text-[9px]">▶</span>}
   </button>
 );
 
@@ -220,7 +211,7 @@ const SummaryCard = ({ title, amount, subtitle, badgeText, badgeType, icon: Icon
   const badges = { positive: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20', warning: 'bg-red-500/10 text-red-400 border border-red-500/20', neutral: 'bg-slate-800 text-slate-300 border border-slate-700' };
   return (
     <button type="button" onClick={onClick}
-      className="text-left bg-[#10222A] border border-slate-800/80 rounded-2xl p-4 sm:p-6 flex flex-col justify-between hover:border-indigo-500/60 transition-colors group relative overflow-hidden">
+      className="text-left bg-[#efe6d2] border border-slate-800/80 rounded-2xl p-4 sm:p-6 flex flex-col justify-between hover:border-indigo-500/60 transition-colors group relative overflow-hidden">
       <div aria-hidden className="absolute inset-0 opacity-[0.055] pointer-events-none"
         style={{ backgroundImage: "linear-gradient(#c7dade 1px, transparent 1px), linear-gradient(90deg, #c7dade 1px, transparent 1px)", backgroundSize: "22px 22px" }} />
       <div aria-hidden className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-indigo-500/60 via-indigo-500/10 to-transparent" />
@@ -240,7 +231,7 @@ const SummaryCard = ({ title, amount, subtitle, badgeText, badgeType, icon: Icon
 
 const EmptyState = ({ icon: Icon, title, desc, action }) => (
   <div className="flex flex-col items-center justify-center py-16 text-center">
-    <div className="w-16 h-16 bg-[#091316] border border-slate-800 rounded-full flex items-center justify-center mb-4"><Icon size={26} className="text-slate-600" /></div>
+    <div className="w-16 h-16 bg-[#e9dfc7] border border-slate-800 rounded-full flex items-center justify-center mb-4"><Icon size={26} className="text-slate-500" /></div>
     <h4 className="text-slate-300 font-medium">{title}</h4>
     <p className="text-slate-500 text-sm mt-1 max-w-sm">{desc}</p>
     {action}
@@ -258,11 +249,11 @@ const Toast = ({ toast }) => {
 };
 
 const Modal = ({ title, icon: Icon, onClose, children }) => (
-  <div className="fixed inset-0 bg-[#091316]/80 backdrop-blur-sm flex items-end sm:items-center justify-center z-[60] sm:p-4"
+  <div className="fixed inset-0 bg-[#2f2a20]/45 backdrop-blur-[2px] flex items-end sm:items-center justify-center z-[60] sm:p-4"
     onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-    <div className="bg-[#10222A] border border-slate-700 rounded-t-2xl sm:rounded-2xl w-full max-w-lg p-5 sm:p-6 relative shadow-2xl max-h-[92vh] overflow-y-auto pb-[max(1.25rem,env(safe-area-inset-bottom))]">
+    <div className="bg-[#efe6d2] border border-slate-700 rounded-t-2xl sm:rounded-2xl w-full max-w-lg p-5 sm:p-6 relative shadow-2xl max-h-[92vh] overflow-y-auto pb-[max(1.25rem,env(safe-area-inset-bottom))]">
       <button onClick={onClose} className="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800 p-1.5 rounded-lg"><X size={20} /></button>
-      <div className="flex items-center gap-3 mb-6"><div className="p-2 bg-indigo-500/20 text-indigo-400 rounded-lg"><Icon size={24} /></div><h2 className="text-xl font-bold text-white">{title}</h2></div>
+      <div className="flex items-center gap-3 mb-6"><div className="p-2 bg-indigo-500/20 text-indigo-400 rounded-lg"><Icon size={24} /></div><h2 className="text-xl font-bold text-[#f2e9d6]">{title}</h2></div>
       {children}
     </div>
   </div>
@@ -368,17 +359,17 @@ const AuthIllustration = () => (
   <svg viewBox="0 0 340 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs">
     <defs>
       <linearGradient id="rota" x1="0" y1="1" x2="1" y2="0">
-        <stop offset="0" stopColor="#8a422a" /><stop offset="0.55" stopColor="#c06b3d" /><stop offset="1" stopColor="#d9b467" />
+        <stop offset="0" stopColor="#8c3021" /><stop offset="0.55" stopColor="#b4432f" /><stop offset="1" stopColor="#b8862b" />
       </linearGradient>
       <radialGradient id="isik" cx="0.78" cy="0.22" r="0.6">
-        <stop offset="0" stopColor="#d9b467" stopOpacity="0.16" /><stop offset="1" stopColor="#d9b467" stopOpacity="0" />
+        <stop offset="0" stopColor="#b8862b" stopOpacity="0.16" /><stop offset="1" stopColor="#b8862b" stopOpacity="0" />
       </radialGradient>
     </defs>
 
     <rect width="340" height="260" fill="url(#isik)" />
 
     {/* Eş yükselti eğrileri — harita dokusu */}
-    <g stroke="#2d454f" fill="none" strokeLinecap="round">
+    <g stroke="#c3ad83" fill="none" strokeLinecap="round">
       <path d="M-10 196C46 178 74 208 118 190S196 140 250 152s76-6 110-26" strokeWidth="1" opacity=".85" />
       <path d="M-10 172C44 152 78 184 124 164S200 112 252 124s78-8 108-30" strokeWidth="1" opacity=".6" />
       <path d="M-10 220C50 204 72 232 120 216S200 168 254 180s72-4 106-22" strokeWidth="1" opacity=".6" />
@@ -393,32 +384,32 @@ const AuthIllustration = () => (
     {/* Duraklar */}
     {[[116, 158], [198, 156], [232, 128]].map(([x, y], i) => (
       <g key={i}>
-        <circle cx={x} cy={y} r="8" fill="#091316" />
-        <circle cx={x} cy={y} r="4.5" fill="none" stroke="#c06b3d" strokeWidth="1.6" />
+        <circle cx={x} cy={y} r="8" fill="#e9dfc7" />
+        <circle cx={x} cy={y} r="4.5" fill="none" stroke="#b4432f" strokeWidth="1.6" />
       </g>
     ))}
 
     {/* Başlangıç */}
-    <circle cx="40" cy="214" r="9" fill="#091316" />
-    <circle cx="40" cy="214" r="4" fill="#7f9ba4" />
+    <circle cx="40" cy="214" r="9" fill="#e9dfc7" />
+    <circle cx="40" cy="214" r="4" fill="#8b7c5f" />
 
     {/* Varış — hedef bayrağı */}
     <g transform="translate(276 84)">
-      <circle r="15" fill="#d9b467" opacity=".12" />
-      <circle r="15" fill="none" stroke="#d9b467" strokeWidth="1" opacity=".55" />
-      <path d="M-1 8V-9" stroke="#e7cd94" strokeWidth="1.8" strokeLinecap="round" />
-      <path d="M-1-9l11 3.6-11 3.6z" fill="#d9b467" />
+      <circle r="15" fill="#b8862b" opacity=".12" />
+      <circle r="15" fill="none" stroke="#b8862b" strokeWidth="1" opacity=".55" />
+      <path d="M-1 8V-9" stroke="#b8862b" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M-1-9l11 3.6-11 3.6z" fill="#b8862b" />
     </g>
 
     {/* Pusula gülü */}
     <g transform="translate(60 66)" opacity=".9">
-      <circle r="21" fill="none" stroke="#2d454f" strokeWidth="1" />
-      <circle r="14" fill="none" stroke="#2d454f" strokeWidth="1" opacity=".6" />
-      <path d="M0-21L4.5-4 0 0-4.5-4z" fill="#c06b3d" />
-      <path d="M0 21L-4.5 4 0 0 4.5 4z" fill="#41565e" />
-      <path d="M21 0L4 4.5 0 0 4-4.5z" fill="#2d454f" opacity=".8" />
-      <path d="M-21 0L-4-4.5 0 0-4 4.5z" fill="#2d454f" opacity=".8" />
-      <text x="0" y="-26" textAnchor="middle" fill="#7f9ba4" fontSize="8" fontFamily="Manrope, sans-serif" letterSpacing=".14em">K</text>
+      <circle r="21" fill="none" stroke="#c3ad83" strokeWidth="1" />
+      <circle r="14" fill="none" stroke="#c3ad83" strokeWidth="1" opacity=".6" />
+      <path d="M0-21L4.5-4 0 0-4.5-4z" fill="#b4432f" />
+      <path d="M0 21L-4.5 4 0 0 4.5 4z" fill="#a08f6e" />
+      <path d="M21 0L4 4.5 0 0 4-4.5z" fill="#c3ad83" opacity=".8" />
+      <path d="M-21 0L-4-4.5 0 0-4 4.5z" fill="#c3ad83" opacity=".8" />
+      <text x="0" y="-26" textAnchor="middle" fill="#8b7c5f" fontSize="8" fontFamily="Manrope, sans-serif" letterSpacing=".14em">K</text>
     </g>
   </svg>
 );
@@ -505,7 +496,7 @@ const Login = () => {
   /* Kayıt sonrası: e-posta doğrulaması bekleniyor */
   if (dogrulamaBekliyor) {
     return (
-      <div className="min-h-[100dvh] bg-[#091316] text-slate-200 font-sans flex flex-col justify-center px-5 py-12">
+      <div className="min-h-[100dvh] bg-[#e9dfc7] text-slate-200 font-sans flex flex-col justify-center px-5 py-12">
         <div className="w-full max-w-sm mx-auto text-center">
           <div className="flex justify-center mb-5">
             <div className="p-4 bg-emerald-500/15 text-emerald-400 rounded-2xl shadow-lg shadow-emerald-500/10"><Mail size={40} /></div>
@@ -515,7 +506,7 @@ const Login = () => {
             <span className="text-slate-200 font-medium break-all">{dogrulamaBekliyor}</span> adresine bir doğrulama bağlantısı gönderdik.
             Hesabını kullanabilmek için önce o bağlantıya tıkla.
           </p>
-          <div className="mt-6 bg-[#10222A] border border-slate-800 rounded-xl p-4 text-left space-y-2">
+          <div className="mt-6 bg-[#efe6d2] border border-slate-800 rounded-xl p-4 text-left space-y-2">
             <p className="text-xs text-slate-400 flex gap-2"><span className="text-indigo-400 font-bold">1.</span> Gelen kutunu aç</p>
             <p className="text-xs text-slate-400 flex gap-2"><span className="text-indigo-400 font-bold">2.</span> Mail yoksa <span className="text-slate-300">spam / gereksiz</span> klasörüne bak</p>
             <p className="text-xs text-slate-400 flex gap-2"><span className="text-indigo-400 font-bold">3.</span> Bağlantıya tıkla, sonra buradan giriş yap</p>
@@ -525,11 +516,11 @@ const Login = () => {
           {tekrarGonderildi && <div className="mt-4 text-sm p-3 rounded-xl border bg-emerald-500/10 border-emerald-500/50 text-emerald-400">Doğrulama bağlantısı yeniden gönderildi.</div>}
 
           <button type="button" onClick={tekrarGonder} disabled={loading || tekrarGonderildi}
-            className="mt-5 w-full py-3 rounded-xl text-sm font-medium text-slate-200 bg-[#10222A] border border-slate-700 hover:border-slate-600 disabled:opacity-50 flex items-center justify-center gap-2">
+            className="mt-5 w-full py-3 rounded-xl text-sm font-medium text-slate-200 bg-[#efe6d2] border border-slate-700 hover:border-slate-600 disabled:opacity-50 flex items-center justify-center gap-2">
             {loading ? <Loader2 className="animate-spin" size={18} /> : <RotateCcw size={16} />} Bağlantıyı tekrar gönder
           </button>
           <button type="button" onClick={() => { setDogrulamaBekliyor(''); setTekrarGonderildi(false); setMod('giris'); setError(''); }}
-            className="mt-3 w-full py-3 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700">
+            className="mt-3 w-full py-3 rounded-xl text-sm font-semibold text-[#f2e9d6] bg-indigo-600 hover:bg-indigo-700">
             Girişe Dön
           </button>
         </div>
@@ -540,28 +531,28 @@ const Login = () => {
   const baslik = isReset ? 'Şifreni Sıfırla' : isRegister ? 'Yeni Hesap Oluştur' : 'Hesabınıza Giriş Yapın';
 
   return (
-    <div className="min-h-[100dvh] bg-[#091316] text-slate-200 font-sans lg:grid lg:grid-cols-2">
+    <div className="min-h-[100dvh] bg-[#e9dfc7] text-slate-200 font-sans lg:grid lg:grid-cols-2">
       {/* SOL: Marka paneli (yalnız geniş ekran) */}
       <div className="hidden lg:flex flex-col justify-between p-10 relative overflow-hidden border-r border-slate-800/60">
         <div aria-hidden className="absolute inset-0 opacity-[0.5] pointer-events-none"
-          style={{ backgroundImage: "radial-gradient(circle at 78% 18%, rgba(217,180,103,.10), transparent 55%)" }} />
+          style={{ backgroundImage: "radial-gradient(circle at 78% 18%, rgba(140,48,33,.07), transparent 58%)" }} />
         <div aria-hidden className="absolute inset-0 opacity-[0.07] pointer-events-none"
-          style={{ backgroundImage: "repeating-linear-gradient(115deg, #c7dade 0 1px, transparent 1px 46px)" }} />
+          style={{ backgroundImage: "repeating-linear-gradient(115deg, #8b7c5f 0 1px, transparent 1px 44px)" }} />
         <div className="relative z-10">
-          <div className="flex items-center gap-2.5 mb-12">
-            <span className="text-indigo-400"><ParotaMark size={26} /></span>
-            <span className="text-base font-bold text-white tracking-tight">Parota</span>
+          <div className="mb-12">
+            <h2 className="marka-yazi text-[34px] leading-none text-slate-200">PAROTA</h2>
+            <p className="mt-2.5 text-[10px] uppercase tracking-[0.3em] text-indigo-400">Ödeme Takibi</p>
           </div>
-          <h1 className="text-3xl font-extrabold text-white leading-tight">Finansını Planla,<br /><span className="text-indigo-400">Rahatla.</span></h1>
-          <p className="mt-3 text-sm text-slate-400 max-w-xs leading-relaxed">Gelir ve giderlerini takip et, geleceğini güvenle yönet.</p>
+          <h1 className="text-[26px] font-semibold uppercase leading-tight text-slate-200 tracking-[0.02em]">Finansını Planla,<br /><span className="text-indigo-400">Rahatla.</span></h1>
+          <p className="mt-3.5 text-[13px] text-slate-400 max-w-xs leading-relaxed">Gelir ve giderlerini takip et, geleceğini güvenle yönet.</p>
           <div className="mt-8 flex justify-center"><AuthIllustration /></div>
         </div>
         <div className="relative z-10 grid grid-cols-3 gap-3 mt-8">
           {[[ShieldCheck, 'Güvenli', 'Verileriniz güvende'], [BarChart3, 'Kolay Takip', 'Tüm finansın tek yerde'], [Zap, 'Hızlı & Pratik', 'Zaman kazandırır']].map(([Ikon, b, alt]) => (
-            <div key={b} className="bg-[#10222A]/70 border border-slate-800 rounded-xl p-3.5">
-              <Ikon size={18} className="text-indigo-400 mb-2" />
-              <p className="text-white text-sm font-semibold">{b}</p>
-              <p className="text-slate-500 text-[11px] mt-0.5 leading-snug">{alt}</p>
+            <div key={b} className="bg-[#f2eada] border border-[#c3ad83] kesikli rounded-[2px] p-3.5">
+              <Ikon size={16} strokeWidth={1.6} className="text-indigo-400 mb-2" />
+              <p className="text-slate-200 text-[11px] font-semibold uppercase tracking-[0.08em]">{b}</p>
+              <p className="text-slate-500 text-[10px] mt-1 leading-snug">{alt}</p>
             </div>
           ))}
         </div>
@@ -570,8 +561,10 @@ const Login = () => {
       {/* SAĞ: Form paneli */}
       <div className="flex flex-col justify-center px-5 py-12 sm:px-10 relative">
         <div className="w-full max-w-sm mx-auto">
-          <div className="flex justify-center mb-4"><span className="text-indigo-400"><ParotaMark size={44} /></span></div>
-          <h2 className="text-center text-xl sm:text-2xl font-bold text-white">{baslik}</h2>
+          <div className="mb-7 text-center lg:hidden">
+            <h2 className="marka-yazi text-[28px] leading-none text-slate-200">PAROTA</h2>
+          </div>
+          <h2 className="text-center text-lg sm:text-xl font-semibold uppercase tracking-[0.06em] text-slate-200">{baslik}</h2>
           <p className="mt-2 text-center text-sm text-slate-400">
             {isReset ? 'E-posta adresini gir, sıfırlama bağlantısı gönderelim.' : 'Finansını Planla, Rahatla.'}
           </p>
@@ -615,7 +608,7 @@ const Login = () => {
               </div>
             )}
 
-            <button type="submit" disabled={loading} className="w-full flex justify-center items-center py-3 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 shadow-lg shadow-indigo-500/20 transition-colors">
+            <button type="submit" disabled={loading} className="w-full flex justify-center items-center py-3 rounded-xl text-sm font-semibold text-[#f2e9d6] bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 shadow-lg shadow-indigo-500/20 transition-colors">
               {loading ? <Loader2 className="animate-spin" size={20} /> : (isReset ? 'Sıfırlama Bağlantısı Gönder' : isRegister ? 'Kayıt Ol' : 'Giriş Yap')}
             </button>
           </form>
@@ -626,7 +619,7 @@ const Login = () => {
                 <div className="flex-1 h-px bg-slate-800" /><span className="text-xs text-slate-500">veya</span><div className="flex-1 h-px bg-slate-800" />
               </div>
               <button type="button" onClick={googleGiris} disabled={google}
-                className="w-full flex items-center justify-center gap-3 py-3 rounded-xl text-sm font-medium text-slate-200 bg-[#10222A] border border-slate-700 hover:border-slate-600 hover:bg-slate-800 disabled:opacity-50 transition-colors">
+                className="w-full flex items-center justify-center gap-3 py-3 rounded-xl text-sm font-medium text-slate-200 bg-[#efe6d2] border border-slate-700 hover:border-slate-600 hover:bg-slate-800 disabled:opacity-50 transition-colors">
                 {google ? <Loader2 className="animate-spin" size={18} /> : (
                   <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C39.9 36.9 44 31 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
                 )}
@@ -645,7 +638,7 @@ const Login = () => {
             </>)}
           </p>
 
-          <p className="mt-10 text-center text-xs text-slate-600">
+          <p className="mt-10 text-center text-xs text-slate-500">
             Developed by <a href="https://ademucar.com.tr/" target="_blank" rel="noopener noreferrer" className="text-slate-400 font-medium hover:text-white transition-colors">Adem Uçar</a>
           </p>
         </div>
@@ -676,7 +669,7 @@ const SifreYenile = ({ onDone, showToast }) => {
   };
 
   return (
-    <div className="min-h-[100dvh] bg-[#091316] text-slate-200 font-sans flex flex-col justify-center px-5 py-12">
+    <div className="min-h-[100dvh] bg-[#e9dfc7] text-slate-200 font-sans flex flex-col justify-center px-5 py-12">
       <div className="w-full max-w-sm mx-auto">
         <div className="flex justify-center mb-4"><div className="p-3 bg-indigo-500/10 border border-indigo-500/25 text-indigo-400 rounded-xl"><Lock size={28} /></div></div>
         <h2 className="text-center text-xl sm:text-2xl font-bold text-white">Yeni Şifreni Belirle</h2>
@@ -705,7 +698,7 @@ const SifreYenile = ({ onDone, showToast }) => {
             </div>
             {password2 && password !== password2 && <p className="text-[11px] text-red-400 mt-1.5">Şifreler eşleşmiyor.</p>}
           </div>
-          <button type="submit" disabled={loading} className="w-full flex justify-center items-center py-3 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 shadow-lg shadow-indigo-500/20">
+          <button type="submit" disabled={loading} className="w-full flex justify-center items-center py-3 rounded-xl text-sm font-semibold text-[#f2e9d6] bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 shadow-lg shadow-indigo-500/20">
             {loading ? <Loader2 className="animate-spin" size={20} /> : <><Check size={18} className="mr-2" /> Şifreyi Güncelle</>}
           </button>
         </form>
@@ -851,7 +844,7 @@ const PaymentModal = ({ onClose, user, categories, onSuccess, editing, occurrenc
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {Object.entries(TYPE_LABEL).map(([id, label]) => (
                   <button type="button" key={id} onClick={() => set('type', id)}
-                    className={`py-2 text-sm rounded-xl border font-medium transition-all ${f.type === id ? 'bg-indigo-600/20 border-indigo-500 text-indigo-400' : 'bg-[#091316] border-slate-700 text-slate-400 hover:border-slate-600'}`}>{label}</button>
+                    className={`py-2 text-sm rounded-xl border font-medium transition-all ${f.type === id ? 'bg-indigo-600/20 border-indigo-500 text-indigo-400' : 'bg-[#e9dfc7] border-slate-700 text-slate-400 hover:border-slate-600'}`}>{label}</button>
                 ))}
               </div>
             </div>
@@ -897,7 +890,7 @@ const PaymentModal = ({ onClose, user, categories, onSuccess, editing, occurrenc
           <div className="col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[['isAutoPay', 'Otomatik ödeme talimatı var'], ['isPinned', 'Önemli olarak işaretle']].map(([key, label]) => (
               <button type="button" key={key} onClick={() => set(key, !f[key])}
-                className={`flex items-center justify-between p-3 rounded-xl border transition-all ${f[key] ? 'bg-indigo-600/10 border-indigo-500 text-indigo-300' : 'bg-[#091316] border-slate-700 text-slate-400'}`}>
+                className={`flex items-center justify-between p-3 rounded-xl border transition-all ${f[key] ? 'bg-indigo-600/10 border-indigo-500 text-indigo-300' : 'bg-[#e9dfc7] border-slate-700 text-slate-400'}`}>
                 <span className="text-sm font-medium">{label}</span>
                 <span className={`w-10 h-6 rounded-full flex items-center px-1 transition-colors ${f[key] ? 'bg-indigo-600 justify-end' : 'bg-slate-700 justify-start'}`}>
                   <span className="w-4 h-4 bg-white rounded-full block" />
@@ -907,7 +900,7 @@ const PaymentModal = ({ onClose, user, categories, onSuccess, editing, occurrenc
           </div>
 
           {isEdit && editing.type !== 'taksitli' && (
-            <label className="col-span-2 flex items-center gap-3 text-sm text-slate-300 bg-[#091316] border border-slate-800 rounded-xl p-3">
+            <label className="col-span-2 flex items-center gap-3 text-sm text-slate-300 bg-[#e9dfc7] border border-slate-800 rounded-xl p-3">
               <input type="checkbox" checked={!!f.applyToFuture} onChange={e => set('applyToFuture', e.target.checked)} className="accent-indigo-600 w-4 h-4" />
               Yeni tutar, ödenmemiş taksitlere de işlensin
             </label>
@@ -917,28 +910,28 @@ const PaymentModal = ({ onClose, user, categories, onSuccess, editing, occurrenc
           {isEdit && (
             <div className="col-span-2 space-y-3">
               <div className="flex flex-wrap gap-2 text-[11px]">
-                <span className="px-2.5 py-1 rounded-lg bg-[#091316] border border-slate-800 text-slate-400">Tür: <span className="text-slate-200">{TYPE_LABEL[editing.type]}</span></span>
-                {editing.start_date && <span className="px-2.5 py-1 rounded-lg bg-[#091316] border border-slate-800 text-slate-400">Başlangıç: <span className="text-slate-200">{formatDate(editing.start_date)}</span></span>}
-                {editing.total_installments && <span className="px-2.5 py-1 rounded-lg bg-[#091316] border border-slate-800 text-slate-400">Taksit: <span className="text-slate-200">{editing.total_installments}</span></span>}
-                <span className="px-2.5 py-1 rounded-lg bg-[#091316] border border-slate-800 text-slate-400">Kayıt: <span className="text-slate-200">{taksitler.length}</span></span>
+                <span className="px-2.5 py-1 rounded-lg bg-[#e9dfc7] border border-slate-800 text-slate-400">Tür: <span className="text-slate-200">{TYPE_LABEL[editing.type]}</span></span>
+                {editing.start_date && <span className="px-2.5 py-1 rounded-lg bg-[#e9dfc7] border border-slate-800 text-slate-400">Başlangıç: <span className="text-slate-200">{formatDate(editing.start_date)}</span></span>}
+                {editing.total_installments && <span className="px-2.5 py-1 rounded-lg bg-[#e9dfc7] border border-slate-800 text-slate-400">Taksit: <span className="text-slate-200">{editing.total_installments}</span></span>}
+                <span className="px-2.5 py-1 rounded-lg bg-[#e9dfc7] border border-slate-800 text-slate-400">Kayıt: <span className="text-slate-200">{taksitler.length}</span></span>
               </div>
 
               {taksitler.length > 0 && (
                 <div className="border border-slate-800 rounded-xl overflow-hidden">
                   <button type="button" onClick={() => setTaksitAcik(v => !v)}
-                    className="w-full flex items-center justify-between px-4 py-3 bg-[#091316] text-sm font-medium text-slate-200">
+                    className="w-full flex items-center justify-between px-4 py-3 bg-[#e9dfc7] text-sm font-medium text-slate-200">
                     <span className="flex items-center gap-2"><CalendarIcon size={15} className="text-indigo-400" /> Taksitleri düzenle</span>
                     <ChevronRight size={16} className={`text-slate-500 transition-transform ${taksitAcik ? 'rotate-90' : ''}`} />
                   </button>
                   {taksitAcik && (
                     <div className="max-h-64 overflow-y-auto divide-y divide-slate-800/70">
                       {taksitler.map((t, i) => (
-                        <div key={t.id} className="flex items-center gap-2 p-2.5 bg-[#10222A]">
+                        <div key={t.id} className="flex items-center gap-2 p-2.5 bg-[#efe6d2]">
                           <span className={`w-7 shrink-0 text-center text-[11px] font-semibold ${t.status === 'odendi' ? 'text-emerald-400' : 'text-slate-500'}`}>{t.no || i + 1}</span>
                           <input type="date" value={t.due_date} onChange={e => setTaksit(t.id, 'due_date', e.target.value)}
-                            className="flex-1 min-w-0 bg-[#091316] border border-slate-700 text-slate-200 rounded-lg px-2 py-2 text-xs [color-scheme:dark] outline-none focus:ring-1 focus:ring-indigo-500" />
+                            className="flex-1 min-w-0 bg-[#e9dfc7] border border-slate-700 text-slate-200 rounded-lg px-2 py-2 text-xs [color-scheme:dark] outline-none focus:ring-1 focus:ring-indigo-500" />
                           <input type="number" step="0.01" min="0" value={t.amount} onChange={e => setTaksit(t.id, 'amount', e.target.value)}
-                            className="w-24 shrink-0 bg-[#091316] border border-slate-700 text-slate-200 rounded-lg px-2 py-2 text-xs text-right outline-none focus:ring-1 focus:ring-indigo-500" />
+                            className="w-24 shrink-0 bg-[#e9dfc7] border border-slate-700 text-slate-200 rounded-lg px-2 py-2 text-xs text-right outline-none focus:ring-1 focus:ring-indigo-500" />
                           {t.status === 'odendi' && <Check size={14} className="text-emerald-400 shrink-0" />}
                         </div>
                       ))}
@@ -951,7 +944,7 @@ const PaymentModal = ({ onClose, user, categories, onSuccess, editing, occurrenc
         </div>
 
         <button type="submit" disabled={loading || categories.length === 0}
-          className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-medium py-3.5 rounded-xl flex justify-center items-center gap-2">
+          className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-[#f2e9d6] font-medium py-3.5 rounded-xl flex justify-center items-center gap-2">
           {loading ? <Loader2 className="animate-spin" size={20} /> : <><Check size={18} /> {isEdit ? 'Güncelle' : 'Kaydet'}</>}
         </button>
       </form>
@@ -982,7 +975,7 @@ const OccurrenceModal = ({ item, onClose, onSaved, showToast }) => {
           <input type="number" step="0.01" min="0" required value={amount} onChange={e => setAmount(e.target.value)} className={INPUT} /></div>
         <div><label className="block text-sm font-medium text-slate-300 mb-1.5">Ödeme Tarihi</label>
           <input type="date" required value={date} onChange={e => setDate(e.target.value)} className={`${INPUT} [color-scheme:dark]`} /></div>
-        <button type="submit" disabled={saving} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 rounded-xl flex justify-center items-center gap-2">
+        <button type="submit" disabled={saving} className="w-full bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] font-medium py-3 rounded-xl flex justify-center items-center gap-2">
           {saving ? <Loader2 className="animate-spin" size={18} /> : <><Check size={18} /> Kaydet</>}
         </button>
       </form>
@@ -1018,7 +1011,7 @@ const CategoryModal = ({ cat, onClose, onSaved, showToast }) => {
             ))}
           </div>
         </div>
-        <button type="submit" disabled={saving || !name.trim()} className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-medium py-3 rounded-xl flex justify-center items-center gap-2">
+        <button type="submit" disabled={saving || !name.trim()} className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-[#f2e9d6] font-medium py-3 rounded-xl flex justify-center items-center gap-2">
           {saving ? <Loader2 className="animate-spin" size={18} /> : <><Check size={18} /> Kaydet</>}
         </button>
       </form>
@@ -1057,7 +1050,7 @@ const IncomeModal = ({ onClose, user, onSaved, showToast, tekSeferlik = false })
           <div className="flex flex-wrap gap-2 mt-2">
             {(tekSeferlik ? ['Prim', 'Hediye', 'Satış', 'Borç Tahsilatı', 'Diğer'] : ['Maaş', 'Burs', 'Ek İş', 'Harçlık']).map(h => (
               <button key={h} type="button" onClick={() => setTitle(h)}
-                className={`text-xs px-3 py-1.5 rounded-lg border ${title === h ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300' : 'bg-[#091316] border-slate-700 text-slate-400'}`}>{h}</button>
+                className={`text-xs px-3 py-1.5 rounded-lg border ${title === h ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300' : 'bg-[#e9dfc7] border-slate-700 text-slate-400'}`}>{h}</button>
             ))}
           </div>
         </div>
@@ -1071,14 +1064,14 @@ const IncomeModal = ({ onClose, user, onSaved, showToast, tekSeferlik = false })
         </div>
         {!tekSeferlik && (
           <button type="button" onClick={() => setRecurring(!recurring)}
-            className={`w-full flex items-center justify-between p-3 rounded-xl border transition-all ${recurring ? 'bg-emerald-600/10 border-emerald-500 text-emerald-300' : 'bg-[#091316] border-slate-700 text-slate-400'}`}>
+            className={`w-full flex items-center justify-between p-3 rounded-xl border transition-all ${recurring ? 'bg-emerald-600/10 border-emerald-500 text-emerald-300' : 'bg-[#e9dfc7] border-slate-700 text-slate-400'}`}>
             <span className="text-sm font-medium text-left">Her ay tekrar eder<br /><span className="text-[11px] opacity-70">Maaş gibi düzenli gelirlerde açık kalsın</span></span>
             <span className={`w-10 h-6 rounded-full flex items-center px-1 shrink-0 transition-colors ${recurring ? 'bg-emerald-600 justify-end' : 'bg-slate-700 justify-start'}`}>
               <span className="w-4 h-4 bg-white rounded-full block" />
             </span>
           </button>
         )}
-        <button type="submit" disabled={saving} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 rounded-xl flex justify-center items-center gap-2">
+        <button type="submit" disabled={saving} className="w-full bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] font-medium py-3 rounded-xl flex justify-center items-center gap-2">
           {saving ? <Loader2 className="animate-spin" size={18} /> : <><Check size={18} /> Kaydet</>}
         </button>
       </form>
@@ -1121,7 +1114,7 @@ const BudgetPanel = ({ gelir, odenen, bekleyen, birikim = 0, ayAdi, onGelirEkle,
               </g>
             ))}
           </svg>
-          <button onClick={onGelirEkle} className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-sm font-medium flex items-center justify-center gap-2 shrink-0">
+          <button onClick={onGelirEkle} className="bg-emerald-600 hover:bg-emerald-700 text-[#f2e9d6] px-5 py-2.5 rounded-xl text-sm font-medium flex items-center justify-center gap-2 shrink-0">
             <Plus size={16} /> Gelir Ekle
           </button>
         </div>
@@ -1188,7 +1181,7 @@ const BudgetPanel = ({ gelir, odenen, bekleyen, birikim = 0, ayAdi, onGelirEkle,
 
 /* ============================ E-POSTA DOĞRULANDI ============================ */
 const EpostaDogrulandi = ({ onDevam }) => (
-  <div className="min-h-[100dvh] bg-[#091316] text-slate-200 font-sans flex flex-col justify-center px-5 py-12">
+  <div className="min-h-[100dvh] bg-[#e9dfc7] text-slate-200 font-sans flex flex-col justify-center px-5 py-12">
     <div className="w-full max-w-sm mx-auto text-center">
       <div className="flex justify-center mb-5">
         <div className="p-4 bg-emerald-500/15 text-emerald-400 rounded-2xl shadow-lg shadow-emerald-500/10"><CheckCircle size={44} /></div>
@@ -1198,7 +1191,7 @@ const EpostaDogrulandi = ({ onDevam }) => (
         Hesabın kullanıma hazır. Şimdi giriş yapabilirsin.
       </p>
       <button type="button" onClick={onDevam}
-        className="mt-7 w-full py-3 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-lg shadow-indigo-500/20">
+        className="mt-7 w-full py-3 rounded-xl text-sm font-semibold text-[#f2e9d6] bg-indigo-600 hover:bg-indigo-700 shadow-lg shadow-indigo-500/20">
         Giriş Yap
       </button>
     </div>
@@ -1226,7 +1219,7 @@ const ProfilKarti = ({ user, onSaved, showToast }) => {
       <form onSubmit={kaydet} className="flex flex-col sm:flex-row gap-3">
         <input value={ad} onChange={e => setAd(e.target.value)} maxLength={40} className={`${INPUT} flex-1`} placeholder="Adın (örn. Adem)" />
         <button type="submit" disabled={saving || ad.trim() === mevcut.trim()}
-          className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 text-white px-5 py-3 rounded-xl text-sm font-medium flex items-center justify-center gap-2 shrink-0">
+          className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 text-[#f2e9d6] px-5 py-3 rounded-xl text-sm font-medium flex items-center justify-center gap-2 shrink-0">
           {saving ? <Loader2 className="animate-spin" size={18} /> : <><Check size={16} /> Kaydet</>}
         </button>
       </form>
@@ -1247,7 +1240,7 @@ const HesapPanel = ({ bakiye, gelir, odenen, birikim, onParaEkle, onBirikimeAkta
         <p className="text-slate-500 text-xs mt-2">Gelirlerin eklenir, ödediklerin ve birikime ayırdıkların düşülür.</p>
       </div>
       <div className="flex gap-2 shrink-0">
-        <button onClick={onParaEkle} className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2">
+        <button onClick={onParaEkle} className="bg-emerald-600 hover:bg-emerald-700 text-[#f2e9d6] px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2">
           <Plus size={16} /> Para Ekle
         </button>
         <button onClick={onBirikimeAktar} className="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2">
@@ -1314,7 +1307,7 @@ const GoalModal = ({ onClose, user, onSaved, showToast, editing }) => {
           <div className="flex flex-wrap gap-2 mt-2">
             {['Acil Durum', 'Laptop', 'Tatil', 'Araba', 'Telefon'].map(h => (
               <button key={h} type="button" onClick={() => setTitle(h)}
-                className={`text-xs px-3 py-1.5 rounded-lg border ${title === h ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300' : 'bg-[#091316] border-slate-700 text-slate-400'}`}>{h}</button>
+                className={`text-xs px-3 py-1.5 rounded-lg border ${title === h ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300' : 'bg-[#e9dfc7] border-slate-700 text-slate-400'}`}>{h}</button>
             ))}
           </div>
         </div>
@@ -1337,7 +1330,7 @@ const GoalModal = ({ onClose, user, onSaved, showToast, editing }) => {
             ))}
           </div>
         </div>
-        <button type="submit" disabled={saving} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 rounded-xl flex justify-center items-center gap-2">
+        <button type="submit" disabled={saving} className="w-full bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] font-medium py-3 rounded-xl flex justify-center items-center gap-2">
           {saving ? <Loader2 className="animate-spin" size={18} /> : <><Check size={18} /> Kaydet</>}
         </button>
       </form>
@@ -1380,7 +1373,7 @@ const TransferModal = ({ goal, hedefler, onClose, user, onSaved, showToast, kala
         <div className="grid grid-cols-2 gap-2">
           {[['ekle', 'Para Aktar', ArrowDownLeft], ['cek', 'Geri Çek', ArrowUpRight]].map(([id, etiket, Ikon]) => (
             <button key={id} type="button" onClick={() => setYon(id)}
-              className={`py-2.5 rounded-xl border text-sm font-medium flex items-center justify-center gap-2 transition-all ${yon === id ? (id === 'ekle' ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300' : 'bg-orange-600/20 border-orange-500 text-orange-300') : 'bg-[#091316] border-slate-700 text-slate-400'}`}>
+              className={`py-2.5 rounded-xl border text-sm font-medium flex items-center justify-center gap-2 transition-all ${yon === id ? (id === 'ekle' ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300' : 'bg-orange-600/20 border-orange-500 text-orange-300') : 'bg-[#e9dfc7] border-slate-700 text-slate-400'}`}>
               <Ikon size={16} /> {etiket}
             </button>
           ))}
@@ -1400,7 +1393,7 @@ const TransferModal = ({ goal, hedefler, onClose, user, onSaved, showToast, kala
             <div className="flex flex-wrap gap-2 mt-2">
               {[0.1, 0.25, 0.5].map(o => (
                 <button key={o} type="button" onClick={() => setTutar(String(Math.round(kalanBakiye * o)))}
-                  className="text-xs px-3 py-1.5 rounded-lg border bg-[#091316] border-slate-700 text-slate-400 hover:text-white">
+                  className="text-xs px-3 py-1.5 rounded-lg border bg-[#e9dfc7] border-slate-700 text-slate-400 hover:text-white">
                   Bakiyenin %{o * 100}'i
                 </button>
               ))}
@@ -1419,7 +1412,7 @@ const TransferModal = ({ goal, hedefler, onClose, user, onSaved, showToast, kala
           <input value={not} onChange={e => setNot(e.target.value)} className={INPUT} placeholder="Örn: maaş günü aktarımı" />
         </div>
 
-        <button type="submit" disabled={saving} className={`w-full text-white font-medium py-3 rounded-xl flex justify-center items-center gap-2 ${yon === 'ekle' ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-orange-600 hover:bg-orange-700'}`}>
+        <button type="submit" disabled={saving} className={`w-full text-[#f2e9d6] font-medium py-3 rounded-xl flex justify-center items-center gap-2 ${yon === 'ekle' ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-orange-600 hover:bg-orange-700'}`}>
           {saving ? <Loader2 className="animate-spin" size={18} /> : <><Check size={18} /> {yon === 'ekle' ? 'Aktar' : 'Çek'}</>}
         </button>
       </form>
@@ -1462,7 +1455,7 @@ const CalendarPanel = ({ cursor, setCursor, occurrences, onPickDay, selectedDay 
           return (
             <button key={d} onClick={() => onPickDay(items.length ? d : null)} className="flex flex-col items-center group">
               <div className={`w-8 h-8 flex items-center justify-center rounded-full text-sm transition-colors
-                ${isToday ? 'bg-indigo-600 text-white font-bold shadow-lg shadow-indigo-500/40'
+                ${isToday ? 'bg-indigo-600 text-[#f2e9d6] font-bold shadow-lg shadow-indigo-500/40'
                   : selectedDay === d ? 'bg-slate-700 text-white' : 'text-slate-300 group-hover:bg-slate-800'}`}>{d}</div>
               <div className="flex gap-0.5 mt-1 h-1.5">
                 {items.slice(0, 3).map((p, i) => (
@@ -1479,7 +1472,7 @@ const CalendarPanel = ({ cursor, setCursor, occurrences, onPickDay, selectedDay 
         <div className="mt-5 pt-5 border-t border-slate-800 space-y-2">
           <p className="text-xs font-medium text-slate-400 mb-2">{selectedDay} {cursor.toLocaleDateString(TR, { month: 'long' })}</p>
           {(byDay[selectedDay] || []).map(i => (
-            <div key={i.id} className="flex justify-between text-sm bg-[#091316] border border-slate-800 rounded-lg px-3 py-2">
+            <div key={i.id} className="flex justify-between text-sm bg-[#e9dfc7] border border-slate-800 rounded-lg px-3 py-2">
               <span className="text-slate-300 truncate">{i.payments?.title}</span>
               <span className="text-white font-medium shrink-0 ml-3">{money(i.amount)}</span>
             </div>
@@ -1973,7 +1966,7 @@ export default function App() {
     if (p) setPaymentModal({ editing: p }); else setOccModal(occ);
   };
 
-  if (booting) return <div className="h-screen flex justify-center items-center bg-[#091316]"><Loader2 className="animate-spin text-indigo-500" size={40} /></div>;
+  if (booting) return <div className="h-screen flex justify-center items-center bg-[#e9dfc7]"><Loader2 className="animate-spin text-indigo-400" size={40} /></div>;
   if (kurtarma) return <SifreYenile showToast={showToast} onDone={async () => {
     try { await supabase.auth.signOut(); } catch { /* yoksay */ } // yeni şifreyle bilinçli giriş için oturumu kapat
     setSession(null); setKurtarma(false);
@@ -1989,14 +1982,16 @@ export default function App() {
   const navItems = [['Ana Sayfa', Home], ['Ödemeler', CreditCard], ['Kategoriler', PieChart], ['Abonelikler', Zap], ['Birikim', PiggyBank], null, ['Ayarlar', Settings]];
 
   return (
-    <div className="flex min-h-[100dvh] bg-[#091316] text-slate-200 font-sans selection:bg-indigo-500/30">
+    <div className="flex min-h-[100dvh] bg-[#e9dfc7] text-slate-200 font-sans selection:bg-indigo-500/30">
       {/* Mobil perde */}
       {sidebarOpen && <div className="fixed inset-0 bg-black/60 z-30 md:hidden" onClick={() => setSidebarOpen(false)} />}
 
-      <aside className={`w-64 bg-[#091316] border-r border-slate-800 flex flex-col shrink-0 z-40 fixed md:sticky inset-y-0 left-0 h-[100dvh] md:top-0 transition-transform duration-300 ease-out md:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <aside className={`w-64 bg-[#e0d3b5] border-r border-[#bfa87f] border-l-[6px] border-l-indigo-600 flex flex-col shrink-0 z-40 fixed md:sticky inset-y-0 left-0 h-[100dvh] md:top-0 transition-transform duration-300 ease-out md:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="p-6 flex items-center space-x-3 mb-2 shrink-0">
-          <span className="text-indigo-400 shrink-0"><ParotaMark size={30} /></span>
-          <div className="flex-1"><h2 className="text-xl font-bold text-white tracking-tight">Parota</h2><p className="text-xs text-slate-400 font-medium">Finansını Planla, Rahatla</p></div>
+          <div className="flex-1 min-w-0">
+            <h2 className="marka-yazi text-[26px] leading-none text-slate-200">PAROTA</h2>
+            <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-slate-400">Ödeme Takibi</p>
+          </div>
           <button onClick={() => setSidebarOpen(false)} className="md:hidden p-1.5 text-slate-400 hover:text-white bg-slate-900 rounded-lg"><X size={18} /></button>
         </div>
         <nav className="flex-1 min-h-0 px-4 space-y-1 overflow-y-auto">
@@ -2007,14 +2002,14 @@ export default function App() {
 
           {/* Dönem seçici: ana sayfadaki dağılım grafiği ve takvim bu ayı gösterir */}
           <div className="pt-3">
-            <p className="px-4 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-600">Dönem</p>
+            <p className="px-4 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Dönem</p>
             <div className="relative">
               <CalendarIcon size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
               <select value={`${calCursor.getFullYear()}-${calCursor.getMonth()}`}
                 onChange={e => { const [y, m] = e.target.value.split('-').map(Number); setCalCursor(new Date(y, m, 1)); setSelectedDay(null); }}
                 className="w-full appearance-none bg-transparent hover:bg-slate-800 text-slate-400 hover:text-slate-200 rounded-xl pl-11 pr-9 py-3 text-sm capitalize outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer transition-colors">
                 {Array.from({ length: 13 }, (_, i) => addMonths(simdi, i - 6)).map(d => (
-                  <option key={`${d.getFullYear()}-${d.getMonth()}`} value={`${d.getFullYear()}-${d.getMonth()}`} className="bg-[#10222A]">
+                  <option key={`${d.getFullYear()}-${d.getMonth()}`} value={`${d.getFullYear()}-${d.getMonth()}`} className="bg-[#efe6d2]">
                     {d.toLocaleDateString(TR, { month: 'long', year: 'numeric' })}
                   </option>
                 ))}
@@ -2026,7 +2021,7 @@ export default function App() {
         <div className="shrink-0 p-4 border-t border-slate-800/60">
           <div className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-900 cursor-pointer border border-transparent hover:border-slate-800"
             onClick={() => supabase.auth.signOut()}>
-            <div aria-hidden="true" className="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm font-bold shrink-0 select-none">
+            <div aria-hidden="true" className="w-10 h-10 rounded-full bg-indigo-600 text-[#f2e9d6] flex items-center justify-center text-sm font-bold shrink-0 select-none">
               {basHarfler(userName)}
             </div>
             <div className="flex-1 overflow-hidden">
@@ -2039,7 +2034,7 @@ export default function App() {
       </aside>
 
       <main className="flex-1 min-w-0 flex flex-col pb-[env(safe-area-inset-bottom)]">
-        <header className="flex justify-between items-center gap-4 py-4 px-4 sm:px-8 border-b border-slate-800/50 bg-[#091316]/80 backdrop-blur-md sticky top-0 z-20">
+        <header className="flex justify-between items-center gap-4 py-4 px-4 sm:px-8 border-b border-slate-800/50 bg-[#e9dfc7]/80 backdrop-blur-md sticky top-0 z-20">
           <div className="flex items-center gap-3 min-w-0">
             <button className="md:hidden p-2 bg-slate-900 rounded-lg border border-slate-800" onClick={() => setSidebarOpen(!sidebarOpen)}><Menu size={18} /></button>
             <div className="min-w-0">
@@ -2101,7 +2096,7 @@ export default function App() {
                     <div className="p-2">
                       {upcoming.length === 0
                         ? <EmptyState icon={CheckCircle} title="Yaklaşan ödemen yok" desc="Şu an bekleyen bir ödemen görünmüyor."
-                            action={<button onClick={() => setPaymentModal({})} className="mt-5 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2"><Plus size={16} /> Ödeme Ekle</button>} />
+                            action={<button onClick={() => setPaymentModal({})} className="mt-5 bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] px-5 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2"><Plus size={16} /> Ödeme Ekle</button>} />
                         : grupla(upcoming).slice(0, 5).map(({ ana, hepsi }) => (
                             <React.Fragment key={ana.payment_id}>
                               <PaymentRow item={ana} {...rowProps} adet={hepsi.length}
@@ -2117,7 +2112,7 @@ export default function App() {
                   </div>
 
                   {overdue.length > 0 && (
-                    <div className="bg-[#10222A] border border-red-900/30 rounded-2xl overflow-hidden">
+                    <div className="bg-[#efe6d2] border border-red-900/30 rounded-2xl overflow-hidden">
                       <div className="p-6 border-b border-slate-800/50"><h3 className="text-lg font-bold text-white flex items-center gap-2"><AlertTriangle className="text-red-400" size={20} /> Geciken Ödemeler</h3></div>
                       <div className="p-2">{overdue.map(p => <PaymentRow key={p.id} item={p} {...rowProps} />)}</div>
                     </div>
@@ -2133,7 +2128,7 @@ export default function App() {
                     {chartData.length > 0 ? (
                       <div className="flex flex-col gap-6">
                         <div className="h-40 w-full">
-                          <Suspense fallback={<div className="h-full flex items-center justify-center"><Loader2 className="animate-spin text-slate-600" size={20} /></div>}>
+                          <Suspense fallback={<div className="h-full flex items-center justify-center"><Loader2 className="animate-spin text-slate-500" size={20} /></div>}>
                             <CategoryPie data={chartData} format={money} />
                           </Suspense>
                         </div>
@@ -2170,14 +2165,14 @@ export default function App() {
                 <Filter size={16} className="text-slate-500 mx-2 hidden sm:block" />
                 {[['hepsi', 'Hepsi'], ['bekliyor', 'Bekleyen'], ['geciken', 'Geciken'], ['odendi', 'Ödenen'], ['onemli', 'Önemli']].map(([id, label]) => (
                   <button key={id} onClick={() => setStatusFilter(id)}
-                    className={`px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium border transition-all ${statusFilter === id ? 'bg-indigo-600/20 border-indigo-500 text-indigo-400' : 'bg-[#091316] border-slate-800 text-slate-400 hover:border-slate-700'}`}>{label}</button>
+                    className={`px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium border transition-all ${statusFilter === id ? 'bg-indigo-600/20 border-indigo-500 text-indigo-400' : 'bg-[#e9dfc7] border-slate-800 text-slate-400 hover:border-slate-700'}`}>{label}</button>
                 ))}
                 <div className="w-full sm:w-auto sm:ml-auto flex items-center gap-2 mt-1 sm:mt-0">
                   <button onClick={() => exportPdf(filteredList, FILTER_LABEL[statusFilter])}
                     className="flex-1 sm:flex-none justify-center bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2.5 rounded-xl flex items-center gap-2 text-sm font-medium border border-slate-700">
                     <FileDown size={16} /> PDF
                   </button>
-                  <button onClick={() => setPaymentModal({})} className="flex-1 sm:flex-none justify-center bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-xl flex items-center gap-2 text-sm font-medium shadow-lg shadow-indigo-500/20">
+                  <button onClick={() => setPaymentModal({})} className="flex-1 sm:flex-none justify-center bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] px-4 py-2.5 rounded-xl flex items-center gap-2 text-sm font-medium shadow-lg shadow-indigo-500/20">
                     <Plus size={16} /> Ödeme Ekle
                   </button>
                 </div>
@@ -2258,30 +2253,30 @@ export default function App() {
 
           {activeTab === 'Kategoriler' && (
             <div className={`${CARD} p-6 mb-20`}>
-              <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2"><PieChart className="text-indigo-500" /> Kategori Yönetimi</h2>
-              <form onSubmit={handleAddCategory} className="flex flex-wrap gap-4 mb-8 p-5 bg-[#091316] rounded-xl border border-slate-800">
+              <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2"><PieChart className="text-indigo-400" /> Kategori Yönetimi</h2>
+              <form onSubmit={handleAddCategory} className="flex flex-wrap gap-4 mb-8 p-5 bg-[#e9dfc7] rounded-xl border border-slate-800">
                 <input placeholder="Kategori Adı" value={newCatName} onChange={e => setNewCatName(e.target.value)}
-                  className="flex-1 min-w-[180px] bg-[#10222A] border border-slate-700 text-white rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-indigo-500" />
-                <div className="flex items-center gap-2 bg-[#10222A] border border-slate-700 rounded-xl px-4 py-3 overflow-x-auto max-w-full">
+                  className="flex-1 min-w-[180px] bg-[#efe6d2] border border-slate-700 text-white rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-indigo-500" />
+                <div className="flex items-center gap-2 bg-[#efe6d2] border border-slate-700 rounded-xl px-4 py-3 overflow-x-auto max-w-full">
                   {Object.keys(HEX_COLORS).map(c => (
                     <button key={c} type="button" onClick={() => setNewCatColor(c)}
                       className={`w-6 h-6 rounded-full ${c} ${newCatColor === c ? 'ring-2 ring-white scale-110' : 'opacity-50 hover:opacity-100'} transition-all`} />
                   ))}
                 </div>
-                <button type="submit" disabled={!newCatName.trim()} className="w-full sm:w-auto justify-center bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white px-8 py-3 rounded-xl font-medium flex items-center gap-2"><Plus size={18} /> Ekle</button>
+                <button type="submit" disabled={!newCatName.trim()} className="w-full sm:w-auto justify-center bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-[#f2e9d6] px-8 py-3 rounded-xl font-medium flex items-center gap-2"><Plus size={18} /> Ekle</button>
               </form>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {categories.length === 0 && (
                   <div className="sm:col-span-2 lg:col-span-4">
                     <EmptyState icon={PieChart} title="Henüz kategori yok"
                       desc="Sık kullanılan altı kategoriyi tek tıkla oluştur, sonra dilediğini değiştir."
-                      action={<button onClick={createStarterCategories} className="mt-5 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2"><Plus size={16} /> Başlangıç Kategorilerini Oluştur</button>} />
+                      action={<button onClick={createStarterCategories} className="mt-5 bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] px-5 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2"><Plus size={16} /> Başlangıç Kategorilerini Oluştur</button>} />
                   </div>
                 )}
                 {categories.map(c => {
                   const count = occurrences.filter(o => o.payments?.categories?.name === c.name).length;
                   return (
-                    <div key={c.id} className="bg-[#091316] border border-slate-800 rounded-xl p-4 flex justify-between items-center group hover:border-slate-700">
+                    <div key={c.id} className="bg-[#e9dfc7] border border-slate-800 rounded-xl p-4 flex justify-between items-center group hover:border-slate-700">
                       <div className="flex items-center gap-3 min-w-0">
                         <div className={`w-4 h-4 rounded-full shrink-0 ${c.color}`} />
                         <div className="min-w-0"><span className="text-white font-medium block truncate">{c.name}</span><span className="text-[11px] text-slate-500">{count} taksit</span></div>
@@ -2361,12 +2356,12 @@ export default function App() {
                   <div className="flex gap-2">
                     {hedeflerDolu.length > 0 && (
                       <button onClick={() => setTransferModal({})}
-                        className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2">
+                        className="bg-emerald-600 hover:bg-emerald-700 text-[#f2e9d6] px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2">
                         <ArrowDownLeft size={16} /> Para Aktar
                       </button>
                     )}
                     <button onClick={() => setGoalModal({})}
-                      className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2">
+                      className="bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2">
                       <Plus size={16} /> Yeni Hedef
                     </button>
                   </div>
@@ -2378,7 +2373,7 @@ export default function App() {
                 <div className={`${CARD}`}>
                   <EmptyState icon={Target} title="Henüz birikim hedefin yok"
                     desc="Bir hedef oluştur, sonra her ay bütçenden buraya para aktar. Ne kadar yaklaştığını halka üzerinde görürsün."
-                    action={<button onClick={() => setGoalModal({})} className="mt-5 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2"><Plus size={16} /> İlk Hedefini Oluştur</button>} />
+                    action={<button onClick={() => setGoalModal({})} className="mt-5 bg-indigo-600 hover:bg-indigo-700 text-[#f2e9d6] px-5 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2"><Plus size={16} /> İlk Hedefini Oluştur</button>} />
                 </div>
               ) : (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -2515,13 +2510,13 @@ export default function App() {
               <div className={`${CARD} p-6`}>
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-lg font-bold text-white flex items-center gap-2"><TrendingUp size={18} className="text-emerald-400" /> Gelirler</h3>
-                  <button onClick={() => setIncomeModal(true)} className="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5"><Plus size={14} /> Ekle</button>
+                  <button onClick={() => setIncomeModal(true)} className="bg-emerald-600 hover:bg-emerald-700 text-[#f2e9d6] px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5"><Plus size={14} /> Ekle</button>
                 </div>
                 {incomes.length === 0
                   ? <p className="text-slate-500 text-sm">Henüz gelir yok. Maaşını eklersen ana sayfada elinde kalan parayı görürsün.</p>
                   : <div className="space-y-2">
                       {incomes.map(g => (
-                        <div key={g.id} className="flex items-center justify-between bg-[#091316] border border-slate-800 rounded-xl p-3">
+                        <div key={g.id} className="flex items-center justify-between bg-[#e9dfc7] border border-slate-800 rounded-xl p-3">
                           <div className="min-w-0">
                             <p className="text-white font-medium text-sm truncate">{g.title}</p>
                             <p className="text-[11px] text-slate-500">{g.is_recurring ? 'Her ay tekrar eder' : formatDate(g.start_date)}</p>

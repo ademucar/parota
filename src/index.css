@@ -1,119 +1,132 @@
 @import "tailwindcss";
 
 /* ============================================================
-   PAROTA — "Gece Deniz Haritası"
-   Hazır kütüphane varsayılanları (slate/indigo) yerine
-   bu markaya özel bir palet: mürekkep zemin, bakır vurgu,
-   pirinç ışıltı. Renkler Tailwind isimlerinin üstüne yazıldığı
-   için uygulamadaki hiçbir sınıf adını değiştirmek gerekmiyor.
+   PAROTA — "Kraft Kâğıt Terminali"
+   Eskitilmiş kâğıt üzerine daktilo estetiği. Koyu tema paleti
+   tersine çevrildi: slate tonları artık mürekkep ve kâğıt
+   çizgisi, indigo ise kiremit kırmızısı.
    ============================================================ */
 @theme {
-  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "IBM Plex Mono", ui-monospace, "Courier New", monospace;
+  --font-display: "Silkscreen", "IBM Plex Mono", monospace;
 
-  /* Mürekkep — soğuk gri-mavi yerine petrol/deniz mürekkebi */
-  --color-slate-50:  #f2f8f8;
-  --color-slate-100: #e2eef0;
-  --color-slate-200: #c7dade;
-  --color-slate-300: #a5c0c7;
-  --color-slate-400: #7f9ba4;
-  --color-slate-500: #5c7982;
-  --color-slate-600: #415e68;
-  --color-slate-700: #2d454f;
-  --color-slate-800: #1e333b;
-  --color-slate-900: #142831;
-  --color-slate-950: #091316;
+  /* Mürekkep → kâğıt (koyudan açığa doğru ters çevrildi) */
+  --color-slate-200: #2f2a20;   /* ana yazı — en koyu mürekkep */
+  --color-slate-300: #453c2d;   /* ikincil yazı */
+  --color-slate-400: #5a4f3b;   /* soluk etiket */
+  --color-slate-500: #6b5e46;   /* çok soluk */
+  --color-slate-600: #7d6f54;   /* en soluk yazı */
+  --color-slate-700: #b9a47c;   /* güçlü kenarlık (input) */
+  --color-slate-800: #cdb994;   /* kenarlık + çip zemini */
+  --color-slate-900: #dccca8;   /* koyu kâğıt yüzeyi */
+  --color-slate-950: #e4d8be;   /* kraft kâğıt */
+  --color-slate-100: #241f17;
+  --color-slate-50:  #1a1710;
 
-  /* Bakır — birincil vurgu (eski indigo'nun yerine) */
-  --color-indigo-50:  #fdf4ee;
-  --color-indigo-100: #f9e3d3;
-  --color-indigo-200: #f0c4a5;
-  --color-indigo-300: #e3a273;
-  --color-indigo-400: #d4834d;
-  --color-indigo-500: #c06b3d;
-  --color-indigo-600: #a85532;
-  --color-indigo-700: #8a422a;
-  --color-indigo-800: #6b3423;
-  --color-indigo-900: #4a2519;
-  --color-indigo-950: #2a140d;
+  /* Kiremit kırmızısı — birincil marka rengi */
+  --color-indigo-200: #f0d5cc;
+  --color-indigo-300: #dfae9f;
+  --color-indigo-400: #9c3521;
+  --color-indigo-500: #b4432f;
+  --color-indigo-600: #a53b28;
+  --color-indigo-700: #8c3021;
+  --color-indigo-800: #6f251a;
+  --color-indigo-900: #4e1a12;
+  --color-indigo-950: #f3e0d6;
 
-  /* Adaçayı — olumlu/başarı (eski emerald) */
-  --color-emerald-300: #a8ccb4;
-  --color-emerald-400: #82b295;
-  --color-emerald-500: #5f9179;
-  --color-emerald-600: #4a7562;
-  --color-emerald-700: #3a5c4e;
+  /* Soluk yeşil — ödendi / aktif */
+  --color-emerald-300: #5c6f49;
+  --color-emerald-400: #5c7048;
+  --color-emerald-500: #6b8054;
+  --color-emerald-600: #5c6f49;
+  --color-emerald-700: #4a5a3b;
 
-  /* Kiremit — uyarı/hata (eski kırmızı) */
-  --color-red-300: #e9a795;
-  --color-red-400: #dd8a72;
-  --color-red-500: #c96a52;
-  --color-red-600: #b0543f;
-  --color-red-900: #4d241a;
+  /* Kızıl — gecikme / hata */
+  --color-red-300: #8c2f22;
+  --color-red-400: #963528;
+  --color-red-500: #a33a28;
+  --color-red-600: #8c2f22;
+  --color-red-900: #e8cfc6;
 
-  /* Pirinç — birikim/hedef vurgusu (eski mor) */
-  --color-purple-300: #e7cd94;
-  --color-purple-400: #d9b467;
-  --color-purple-500: #c49a45;
-  --color-purple-600: #a37f37;
+  /* Hardal — uyarı / yaklaşan */
+  --color-yellow-400: #9a7420;
+  --color-yellow-500: #b8862b;
 
-  /* Okra — dikkat (eski sarı) */
-  --color-yellow-400: #dcb44f;
-  --color-yellow-500: #c9a227;
+  /* Çelik mavisi — birikim */
+  --color-purple-300: #405c6b;
+  --color-purple-400: #4e6b7c;
+  --color-purple-500: #5b7a8c;
+  --color-purple-600: #405c6b;
 
-  /* Çelik mavisi — bilgi (eski mavi) */
-  --color-blue-400: #6fa3ab;
-  --color-blue-500: #4e8b92;
+  --color-blue-400: #4e6b7c;
+  --color-blue-500: #5b7a8c;
 
-  /* Köşeler: her şeyin aşırı yuvarlak olduğu "hazır şablon"
-     görünümünden çıkmak için ölçüleri sıkılaştırıyoruz. */
-  --radius-lg:  0.375rem;
-  --radius-xl:  0.5rem;
-  --radius-2xl: 0.75rem;
+  /* Beyaz artık kâğıt (ters çevrilen düzende yazı koyu olmalı) */
+  --color-white: #2f2a20;
+
+  /* Neredeyse köşesiz — basılı form estetiği */
+  --radius-lg:  2px;
+  --radius-xl:  3px;
+  --radius-2xl: 4px;
 }
 
 @layer base {
   html {
-    background-color: #091316;
-    color-scheme: dark;
+    background-color: #e4d8be;
+    color-scheme: light;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
 
   body {
-    background-color: #091316;
+    background-color: #e4d8be;
     min-height: 100dvh;
     @apply text-slate-200;
     overscroll-behavior-y: none;
     -webkit-font-smoothing: antialiased;
-    /* Finans uygulaması: rakamlar sütun hâlinde hizalansın */
     font-variant-numeric: tabular-nums;
-    letter-spacing: -0.011em;
+    letter-spacing: -0.005em;
   }
 
-  /* Başlıklar editoryal serif — tek başına en ayırt edici hamle */
-  h1, h2, h3 {
-    font-family: var(--font-display);
-    font-optical-sizing: auto;
-    letter-spacing: -0.02em;
-    font-weight: 600;
-  }
+  h1, h2, h3 { letter-spacing: 0.01em; }
 
-  /* Kâğıt dokusu: dijital düzlüğü kıran ince bir tanecik.
-     Sabit ve çok düşük opaklıkta, okumayı etkilemez. */
+  /* Kâğıt dokusu: lif taneciği + hafif lekelenme */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: 9999;
     pointer-events: none;
-    opacity: 0.028;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+    background-image:
+      radial-gradient(120% 90% at 12% 0%, rgba(120, 96, 54, .10), transparent 55%),
+      radial-gradient(100% 80% at 95% 100%, rgba(120, 96, 54, .09), transparent 55%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
   }
 
-  /* Mobilde girişte tarayıcının otomatik yakınlaştırmasını engeller */
   input, select, textarea { font-size: 16px; }
   @media (min-width: 640px) {
     input, select, textarea { font-size: inherit; }
+  }
+
+  ::placeholder { color: #a08f6e; }
+  ::selection { background: #b4432f; color: #f2e9d6; }
+}
+
+@layer utilities {
+  /* Basılı form hissi veren çift çerçeve */
+  .cerceve {
+    box-shadow: 0 0 0 3px #e4d8be, 0 0 0 4px #c9b591;
+  }
+  .cerceve-koyu {
+    box-shadow: 0 0 0 3px #e4d8be, 0 0 0 4px #bfa87f;
+  }
+  /* Kesikli ayraç */
+  .kesikli { border-style: dashed; }
+  /* Marka yazısı — bitmap */
+  .marka-yazi {
+    font-family: "Silkscreen", monospace;
+    letter-spacing: 0.06em;
   }
 }
