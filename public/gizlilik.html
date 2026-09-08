@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gizlilik Politikası — Parota</title>
+<meta name="description" content="Parota gizlilik politikası: hangi verileri topluyoruz, nerede saklıyoruz, haklarınız neler." />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--kagit:#e4d8be;--yuzey:#efe6d2;--murekkep:#2f2a20;--soluk:#6b5e46;--cizgi:#c9b591;--kiremit:#b4432f}
+  *{box-sizing:border-box}
+  html,body{background:var(--kagit);margin:0}
+  body{font-family:"IBM Plex Mono",ui-monospace,monospace;color:var(--murekkep);line-height:1.7;font-size:14px;padding:32px 20px 80px}
+  .kap{max-width:760px;margin:0 auto}
+  header{display:flex;align-items:center;gap:14px;margin-bottom:34px}
+  header img{width:46px;height:46px;object-fit:contain}
+  .marka{font-family:"Silkscreen",monospace;font-size:26px;line-height:1}
+  .ust{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--soluk);margin-top:7px}
+  h1{font-size:26px;letter-spacing:.01em;margin:0 0 6px}
+  .tarih{font-size:11px;color:var(--soluk);text-transform:uppercase;letter-spacing:.14em;margin-bottom:30px}
+  main{background:var(--yuzey);border:1px solid var(--cizgi);box-shadow:0 0 0 3px var(--kagit),0 0 0 4px var(--cizgi);padding:30px 28px;border-radius:3px}
+  h2{font-size:15px;text-transform:uppercase;letter-spacing:.09em;margin:30px 0 10px;padding-bottom:7px;border-bottom:1px dashed var(--cizgi)}
+  h2:first-of-type{margin-top:0}
+  ul{padding-left:19px;margin:10px 0}
+  li{margin-bottom:7px}
+  a{color:var(--kiremit)}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+  th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--cizgi)}
+  th{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--soluk)}
+  footer{margin-top:26px;font-size:11px;color:var(--soluk);text-align:center}
+  .not{border-left:3px solid var(--kiremit);padding:10px 14px;margin:16px 0;background:#f6efdd;font-size:13px}
+</style>
+</head>
+<body>
+<div class="kap">
+  <header>
+    <img src="/logo.png" alt="" />
+    <div><div class="marka">PAROTA</div><div class="ust">Ödeme Takibi</div></div>
+  </header>
+
+  <h1>Gizlilik Politikası</h1>
+  <div class="tarih">Son güncelleme: 8 Eylül 2026</div>
+
+  <main>
+    <h2>1. Kısaca</h2>
+    <p>Parota, ödemelerini, taksitlerini, aboneliklerini ve birikim hedeflerini takip etmene yarayan kişisel bir bütçe uygulamasıdır. Girdiğin veriler yalnızca sana aittir; <strong>başka kullanıcılar tarafından görülemez, üçüncü taraflara satılmaz, reklam amacıyla kullanılmaz.</strong></p>
+
+    <h2>2. Hangi verileri işliyoruz</h2>
+    <table>
+      <tr><th>Veri</th><th>Neden</th></tr>
+      <tr><td>E-posta adresi</td><td>Hesabını oluşturmak ve girişini sağlamak</td></tr>
+      <tr><td>Şifre (şifrelenmiş)</td><td>Hesabını korumak — düz metin olarak saklanmaz</td></tr>
+      <tr><td>Görünen ad (isteğe bağlı)</td><td>Uygulamada sana hitap etmek</td></tr>
+      <tr><td>Ödeme, taksit ve abonelik kayıtların</td><td>Uygulamanın temel işlevi</td></tr>
+      <tr><td>Gelir ve birikim hedeflerin</td><td>Bütçe ve birikim takibi</td></tr>
+      <tr><td>Kategoriler ve notların</td><td>Kayıtlarını düzenlemen için</td></tr>
+    </table>
+    <p>Banka hesabına, kartına veya finansal kurumlarına <strong>hiçbir şekilde bağlanmıyoruz</strong>. Tüm kayıtlar senin elle girdiğin verilerdir.</p>
+
+    <h2>3. Google ile giriş</h2>
+    <p>Google hesabınla giriş yapmayı seçersen Google bize yalnızca <strong>e-posta adresini, adını ve profil fotoğrafı bağlantını</strong> iletir. Google şifreni görmüyoruz ve Google hesabındaki başka hiçbir bilgiye (kişiler, takvim, dosyalar) erişimimiz yoktur.</p>
+
+    <h2>4. Verilerin nerede saklanıyor</h2>
+    <ul>
+      <li><strong>Veritabanı:</strong> Supabase (Amazon Web Services altyapısı) — <strong>Frankfurt, Almanya</strong> sunucuları. Veriler Avrupa Birliği sınırları içinde kalır.</li>
+      <li><strong>E-posta gönderimi:</strong> Resend — yalnızca hesap doğrulama ve şifre sıfırlama e-postaları için kullanılır.</li>
+    </ul>
+    <div class="not">Verilerin veritabanı düzeyinde <strong>satır bazlı güvenlik (RLS)</strong> ile korunur. Bu, her sorgunun veritabanı tarafından "bu kayıt bu kullanıcıya mı ait?" diye denetlenmesi demektir. Başka bir kullanıcı, uygulamayı hiç kullanmadan doğrudan sunucuya istek atsa bile senin kayıtlarına ulaşamaz.</div>
+
+    <h2>5. Çerezler ve tarayıcı depolaması</h2>
+    <p>Reklam veya takip çerezi kullanmıyoruz. Yalnızca uygulamanın çalışması için gereken bilgileri tarayıcında saklıyoruz:</p>
+    <ul>
+      <li>Oturum bilgin (giriş yapmış kalman için)</li>
+      <li>"Beni hatırla" tercihin</li>
+      <li>En son açtığın sekme</li>
+    </ul>
+    <p>Bunlar cihazından çıkmaz; analiz veya profilleme için kullanılmaz.</p>
+
+    <h2>6. Haklarının kullanımı</h2>
+    <ul>
+      <li><strong>Erişim:</strong> Tüm kayıtlarını uygulama içinden görebilir, Ayarlar bölümünden PDF olarak dışa aktarabilirsin.</li>
+      <li><strong>Düzeltme:</strong> Her kaydı istediğin zaman düzenleyebilir veya silebilirsin.</li>
+      <li><strong>Silme:</strong> Hesabının ve tüm verilerinin kalıcı olarak silinmesini istersen aşağıdaki adrese yaz; talebin 30 gün içinde yerine getirilir.</li>
+    </ul>
+
+    <h2>7. Veri saklama süresi</h2>
+    <p>Kayıtların, sen silene veya hesabının silinmesini talep edene kadar saklanır. Hesap silindiğinde tüm ödeme, gelir ve birikim kayıtların da kalıcı olarak silinir.</p>
+
+    <h2>8. Değişiklikler</h2>
+    <p>Bu politika güncellenirse yukarıdaki "son güncelleme" tarihi değişir. Önemli değişikliklerde uygulama içinden bilgilendirilirsin.</p>
+
+    <h2>9. İletişim</h2>
+    <p>Gizlilikle ilgili her türlü soru, talep ve şikâyet için: <a href="mailto:ucaradem317@gmail.com">ucaradem317@gmail.com</a></p>
+  </main>
+
+  <footer>Parota · <a href="/">Uygulamaya dön</a></footer>
+</div>
+</body>
+</html>
