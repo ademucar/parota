@@ -642,9 +642,14 @@ const Login = () => {
             </>)}
           </p>
 
-          <p className="mt-10 text-center text-xs text-slate-500">
-            Developed by <a href="https://ademucar.com.tr/" target="_blank" rel="noopener noreferrer" className="text-slate-400 font-medium hover:text-white transition-colors">Adem Uçar</a>
-          </p>
+          <div className="mt-10 text-center text-[11px] text-slate-500 space-y-2.5">
+            <p className="flex items-center justify-center gap-2.5">
+              <a href="/gizlilik.html" className="underline underline-offset-2 hover:text-indigo-400">Gizlilik Politikası</a>
+              <span className="text-slate-600">·</span>
+              <a href="/kosullar.html" className="underline underline-offset-2 hover:text-indigo-400">Kullanım Koşulları</a>
+            </p>
+            <p>Developed by <a href="https://ademucar.com.tr/" target="_blank" rel="noopener noreferrer" className="text-slate-400 font-medium hover:text-slate-200 transition-colors">Adem Uçar</a></p>
+          </div>
         </div>
       </div>
     </div>
@@ -2531,6 +2536,19 @@ export default function App() {
                 <button onClick={() => exportPdf(occurrences.filter(o => { const d = new Date(o.due_date); const t = new Date(); return d.getMonth() === t.getMonth() && d.getFullYear() === t.getFullYear(); }), 'Bu ay')} className="w-full flex items-center gap-2 justify-center py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium b3d"><FileDown size={16} /> Bu Ayın Raporu (PDF)</button>
                 <button onClick={fetchAll} className="w-full flex items-center gap-2 justify-center py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium b3d"><RotateCcw size={16} /> Verileri Yenile</button>
                 <button onClick={() => supabase.auth.signOut()} className="w-full flex items-center gap-2 justify-center py-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 text-sm font-medium"><LogOut size={16} /> Çıkış Yap</button>
+              </div>
+
+              <div className={`${CARD} p-6`}>
+                <h3 className="text-sm font-bold uppercase tracking-[0.08em] text-slate-200 mb-1">Yasal</h3>
+                <p className="text-slate-500 text-xs mb-4">Verilerini nasıl işlediğimizi ve kullanım koşullarını buradan okuyabilirsin.</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <a href="/gizlilik.html" className="flex items-center justify-center gap-2 py-3 rounded-[2px] bg-[#f6efdd] border border-slate-200 text-slate-200 text-sm font-medium b3d">
+                    <ShieldCheck size={16} /> Gizlilik Politikası
+                  </a>
+                  <a href="/kosullar.html" className="flex items-center justify-center gap-2 py-3 rounded-[2px] bg-[#f6efdd] border border-slate-200 text-slate-200 text-sm font-medium b3d">
+                    <StickyNote size={16} /> Kullanım Koşulları
+                  </a>
+                </div>
               </div>
             </div>
           )}
