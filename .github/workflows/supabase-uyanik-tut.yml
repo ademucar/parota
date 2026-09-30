@@ -1,0 +1,42 @@
+# Supabase ücretsiz planda 7 gün hareketsiz kalan projeleri duraklatıyor.
+# Bu iş akışı her gün veritabanına küçük bir sorgu atarak sayacı sıfırlar.
+name: Supabase uyanık tut
+
+on:
+  schedule:
+    # Her gün 07:10 UTC (Türkiye saatiyle 10:10)
+    - cron: "10 7 * * *"
+  workflow_dispatch: # Elle de çalıştırılabilsin
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Veritabanına sorgu at
+        env:
+          URL: ${{ secrets.SUPABASE_URL }}
+          KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          if [ -z "$URL" ] || [ -z "$KEY" ]; then
+            echo "::error::SUPABASE_URL veya SUPABASE_ANON_KEY gizli anahtarı tanımlı değil."
+            exit 1
+          fi
+
+          # PostgREST üzerinden gerçek bir veritabanı sorgusu.
+          # RLS yüzünden boş dizi döner ama sorgu Postgres'e ulaşır —
+          # hareketlilik sayacını sıfırlayan da budur.
+          kod=$(curl -s -m 30 -o /tmp/yanit.txt -w "%{http_code}" \
+            "${URL%/}/rest/v1/categories?select=id&limit=1" \
+            -H "apikey: $KEY" \
+            -H "Authorization: Bearer $KEY")
+
+          echo "HTTP $kod"
+          echo "Yanıt: $(head -c 200 /tmp/yanit.txt)"
+
+          if [ "$kod" != "200" ]; then
+            echo "::error::Supabase yanıt vermedi (HTTP $kod). Proje duraklatılmış olabilir."
+            exit 1
+          fi
+
+          echo "Proje ayakta, sayaç sıfırlandı."
